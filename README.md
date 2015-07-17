@@ -1,2 +1,2 @@
 # databases
-Plugin databases pour GLPI
+Plugin databases pour GLPI 0.90
