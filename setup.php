@@ -90,7 +90,7 @@ function plugin_version_databases() {
       'author'  => "<a href='http://infotel.com/services/expertise-technique/glpi/'>Infotel</a>",
       'oldname' => 'sgbd',
       'license' => 'GPLv2+',
-      'homepage'=>'https://forge.indepnet.net/projects/databases',
+      'homepage'=>'https://github.com/InfotelGLPI/databases',
       'minGlpiVersion' => '0.90',
    );
 
