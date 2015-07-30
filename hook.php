@@ -190,10 +190,11 @@ function plugin_databases_uninstall() {
                "glpi_bookmarks",
                "glpi_logs",
                "glpi_items_tickets",
-               "glpi_notepads");
+               "glpi_notepads",
+               "glpi_dropdowntranslations");
 
    foreach($tables_glpi as $table_glpi)
-      $DB->query("DELETE FROM `$table_glpi` WHERE `itemtype` = 'PluginDatabasesDatabase' ;");
+      $DB->query("DELETE FROM `$table_glpi` WHERE `itemtype` LIKE 'PluginDatabases' ;");
 
    if (class_exists('PluginDatainjectionModel')) {
       PluginDatainjectionModel::clean(array('itemtype'=>'PluginDatabasesDatabase'));

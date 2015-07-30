@@ -34,7 +34,8 @@ if (!defined('GLPI_ROOT')) {
 class PluginDatabasesDatabaseCategory extends CommonDropdown {
 
    static $rightname = "plugin_databases";
-
+   var $can_be_translated  = true;
+   
    static function getTypeName($nb=0) {
 
       return _n('Category','Categories',$nb, 'databases');
