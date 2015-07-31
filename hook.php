@@ -194,7 +194,7 @@ function plugin_databases_uninstall() {
                "glpi_dropdowntranslations");
 
    foreach($tables_glpi as $table_glpi)
-      $DB->query("DELETE FROM `$table_glpi` WHERE `itemtype` LIKE 'PluginDatabases' ;");
+      $DB->query("DELETE FROM `$table_glpi` WHERE `itemtype` LIKE 'PluginDatabases%' ;");
 
    if (class_exists('PluginDatainjectionModel')) {
       PluginDatainjectionModel::clean(array('itemtype'=>'PluginDatabasesDatabase'));
