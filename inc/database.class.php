@@ -35,7 +35,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
 
    public $dohistory=true;
    static $rightname = "plugin_databases";
-   protected $usenotepadrights         = true;
+   protected $usenotepad         = true;
    
    static $types = array('Computer','Software');
 
