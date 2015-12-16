@@ -40,7 +40,7 @@ if (isset($_POST["add"])) {
    $database->check(-1, CREATE,$_POST);
    $newID=$database->add($_POST);
    if ($_SESSION['glpibackcreated']) {
-      Html::redirect($web->getFormURL()."?id=".$newID);
+      Html::redirect($database->getFormURL()."?id=".$newID);
    }
    Html::back();
 
