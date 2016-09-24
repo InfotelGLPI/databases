@@ -2,28 +2,28 @@
 /*
  * @version $Id: HEADER 15930 2011-10-30 15:47:55Z tsmr $
  -------------------------------------------------------------------------
- Databases plugin for GLPI
- Copyright (C) 2003-2011 by the databases Development Team.
+ databases plugin for GLPI
+ Copyright (C) 2009-2016 by the databases Development Team.
 
- https://forge.indepnet.net/projects/databases
+ https://github.com/InfotelGLPI/databases
  -------------------------------------------------------------------------
 
  LICENSE
-
+      
  This file is part of databases.
 
- Databases is free software; you can redistribute it and/or modify
+ databases is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
 
- Databases is distributed in the hope that it will be useful,
+ databases is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
 
  You should have received a copy of the GNU General Public License
- along with Databases. If not, see <http://www.gnu.org/licenses/>.
+ along with databases. If not, see <http://www.gnu.org/licenses/>.
  --------------------------------------------------------------------------
  */
 
@@ -86,7 +86,7 @@ function plugin_version_databases() {
 
    return array (
       'name' => _n('Database', 'Databases', 2, 'databases'),
-      'version' => '1.8.1',
+      'version' => '1.9.0',
       'author'  => "<a href='http://infotel.com/services/expertise-technique/glpi/'>Infotel</a>",
       'oldname' => 'sgbd',
       'license' => 'GPLv2+',
@@ -98,7 +98,7 @@ function plugin_version_databases() {
 
 // Optional : check prerequisites before install : may print errors or add to message after redirect
 function plugin_databases_check_prerequisites() {
-   if (version_compare(GLPI_VERSION,'0.90','lt') || version_compare(GLPI_VERSION,'0.91','ge')) {
+   if (version_compare(GLPI_VERSION,'0.90','lt') || version_compare(GLPI_VERSION,'9.2','ge')) {
       _e('This plugin requires GLPI >= 0.90', 'databases');
       return false;
    }
