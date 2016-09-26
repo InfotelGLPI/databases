@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI - Databases plugin 1.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-17 09:33+0200\n"
+"POT-Creation-Date: 2016-09-26 09:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,8 +22,8 @@ msgstr ""
 msgid "Associate to the database"
 msgstr ""
 
-#: setup.php:88 inc/database.class.php:44 inc/menu.class.php:35
-#: inc/profile.class.php:144
+#: setup.php:88 inc/database.class.php:44 inc/menu.class.php:34
+#: inc/profile.class.php:143
 msgid "Database"
 msgid_plural "Databases"
 msgstr[0] ""
@@ -39,12 +39,12 @@ msgid_plural "Categories"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/database.class.php:115 inc/database.class.php:271
+#: inc/database.class.php:115 inc/database.class.php:275
 #: inc/database_item.class.php:489
 msgid "Editor"
 msgstr ""
 
-#: inc/database.class.php:468
+#: inc/database.class.php:472
 msgid "Database associated"
 msgid_plural "Databases associated"
 msgstr[0] ""
