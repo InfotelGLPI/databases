@@ -31,14 +31,21 @@ if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access directly to this file");
 }
 
-class PluginDatabasesServerType extends CommonDropdown {
+/**
+ * Class PluginDatabasesServerType
+ */
+class PluginDatabasesServerType extends CommonDropdown
+{
 
-   static $rightname = "plugin_databases";
-   var $can_be_translated  = true;
-   
-   static function getTypeName($nb=0) {
-      return _n('Engine','Engines',$nb, 'databases');
+   static $rightname = "dropdown";
+   var $can_be_translated = true;
+
+   /**
+    * @param int $nb
+    * @return translated
+    */
+   static function getTypeName($nb = 0)
+   {
+      return _n('Engine', 'Engines', $nb, 'databases');
    }
 }
-
-?>

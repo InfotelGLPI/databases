@@ -1,4 +1,5 @@
 <?php
+
 /*
  * @version $Id: HEADER 15930 2011-10-30 15:47:55Z tsmr $
  -------------------------------------------------------------------------
@@ -26,34 +27,46 @@
  along with databases. If not, see <http://www.gnu.org/licenses/>.
  --------------------------------------------------------------------------
  */
- 
-class PluginDatabasesMenu extends CommonGLPI {
+
+/**
+ * Class PluginDatabasesMenu
+ */
+class PluginDatabasesMenu extends CommonGLPI
+{
    static $rightname = 'plugin_databases';
 
-   static function getMenuName() {
+   /**
+    * @return translated
+    */
+   static function getMenuName()
+   {
       return _n('Database', 'Databases', 2, 'databases');
    }
 
-   static function getMenuContent() {
-      global $CFG_GLPI;
+   /**
+    * @return array
+    */
+   static function getMenuContent()
+   {
 
-      $menu                                           = array();
-      $menu['title']                                  = self::getMenuName();
-      $menu['page']                                   = "/plugins/databases/front/database.php";
-      $menu['links']['search']                        = PluginDatabasesDatabase::getSearchURL(false);
+      $menu = array();
+      $menu['title'] = self::getMenuName();
+      $menu['page'] = "/plugins/databases/front/database.php";
+      $menu['links']['search'] = PluginDatabasesDatabase::getSearchURL(false);
       if (PluginDatabasesDatabase::canCreate()) {
-         $menu['links']['add']                        = PluginDatabasesDatabase::getFormURL(false);
+         $menu['links']['add'] = PluginDatabasesDatabase::getFormURL(false);
       }
 
       return $menu;
    }
 
-   static function removeRightsFromSession() {
+   static function removeRightsFromSession()
+   {
       if (isset($_SESSION['glpimenu']['assets']['types']['PluginDatabasesMenu'])) {
-         unset($_SESSION['glpimenu']['assets']['types']['PluginDatabasesMenu']); 
+         unset($_SESSION['glpimenu']['assets']['types']['PluginDatabasesMenu']);
       }
       if (isset($_SESSION['glpimenu']['assets']['content']['plugindatabasesmenu'])) {
-         unset($_SESSION['glpimenu']['assets']['content']['plugindatabasesmenu']); 
+         unset($_SESSION['glpimenu']['assets']['content']['plugindatabasesmenu']);
       }
    }
 }

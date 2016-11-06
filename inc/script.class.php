@@ -31,7 +31,11 @@ if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access directly to this file");
 }
 
-class PluginDatabasesScript extends CommonDBChild {
+/**
+ * Class PluginDatabasesScript
+ */
+class PluginDatabasesScript extends CommonDBChild
+{
 
    static $rightname = "plugin_databases";
 
@@ -39,54 +43,89 @@ class PluginDatabasesScript extends CommonDBChild {
    static public $itemtype = 'PluginDatabasesDatabase';
    static public $items_id = 'plugin_databases_databases_id';
 
-   static function getTypeName($nb=0) {
+   /**
+    * @param int $nb
+    * @return translated
+    */
+   static function getTypeName($nb = 0)
+   {
 
-      return _n('Script','Scripts',$nb, 'databases');
+      return _n('Script', 'Scripts', $nb, 'databases');
    }
 
-   function getTabNameForItem(CommonGLPI $item, $withtemplate=0) {
+   /**
+    * @param CommonGLPI $item
+    * @param int $withtemplate
+    * @return array|string|translated
+    */
+   function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
+   {
 
-      if ($item->getType()=='PluginDatabasesDatabase') {
+      if ($item->getType() == 'PluginDatabasesDatabase') {
          if ($_SESSION['glpishow_count_on_tabs']) {
             return self::createTabEntry(self::getTypeName(2), self::countForItem($item));
          }
          return self::getTypeName(2);
       }
-      
+
       return '';
    }
 
-   static function countForItem(CommonDBTM $item) {
+   /**
+    * @param CommonDBTM $item
+    * @return int
+    */
+   static function countForItem(CommonDBTM $item)
+   {
 
       return countElementsInTable('glpi_plugin_databases_scripts',
-                                  "`plugin_databases_databases_id` = '".$item->getID()."'");
+         "`plugin_databases_databases_id` = '" . $item->getID() . "'");
    }
-   
-   static function displayTabContentForItem(CommonGLPI $item, $tabnum=1, $withtemplate=0) {
+
+   /**
+    * @param CommonGLPI $item
+    * @param int $tabnum
+    * @param int $withtemplate
+    * @return bool
+    */
+   static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
+   {
       global $CFG_GLPI;
 
-      if ($item->getType()=='PluginDatabasesDatabase') {
+      if ($item->getType() == 'PluginDatabasesDatabase') {
          $self = new self();
 
          $self->showScripts($item);
          $self->showForm("", array('plugin_databases_databases_id' => $item->getField('id'),
-                                    'target' => $CFG_GLPI['root_doc']."/plugins/databases/front/script.form.php"));
+            'target' => $CFG_GLPI['root_doc'] . "/plugins/databases/front/script.form.php"));
       }
       return true;
    }
 
-   function prepareInputForAdd($input) {
+   /**
+    * @param datas $input
+    * @return bool|datas
+    */
+   function prepareInputForAdd($input)
+   {
       // Not attached to reference -> not added
       if (!isset($input['plugin_databases_databases_id'])
-               || $input['plugin_databases_databases_id'] <= 0) {
+         || $input['plugin_databases_databases_id'] <= 0
+      ) {
          return false;
       }
       return $input;
    }
 
-   function showForm ($ID, $options=array()) {
+   /**
+    * @param $ID
+    * @param array $options
+    * @return bool
+    */
+   function showForm($ID, $options = array())
+   {
 
-      if (!$this->canview()) return false;
+      if (!$this->canView()) return false;
 
       $plugin_databases_databases_id = -1;
       if (isset($options['plugin_databases_databases_id'])) {
@@ -94,44 +133,44 @@ class PluginDatabasesScript extends CommonDBChild {
       }
 
       if ($ID > 0) {
-         $this->check($ID,READ);
+         $this->check($ID, READ);
       } else {
          $database = new PluginDatabasesDatabase();
          $database->getFromDB($plugin_databases_databases_id);
          // Create item
-         $input=array('plugin_databases_databases_id'=>$plugin_databases_databases_id,
-                      'entities_id' => $database->getEntityID(),
-                      'is_recursive' => $database->isRecursive());
-         $this->check(-1,UPDATE,$input);
+         $input = array('plugin_databases_databases_id' => $plugin_databases_databases_id,
+            'entities_id' => $database->getEntityID(),
+            'is_recursive' => $database->isRecursive());
+         $this->check(-1, UPDATE, $input);
       }
 
       $this->showFormHeader($options);
 
       echo "<input type='hidden' name='plugin_databases_databases_id' value='$plugin_databases_databases_id'>";
-      echo "<input type='hidden' name='entities_id' value='".$this->fields["entities_id"]."'>";
-      echo "<input type='hidden' name='is_recursive' value='".$this->fields["is_recursive"]."'>";
+      echo "<input type='hidden' name='entities_id' value='" . $this->fields["entities_id"] . "'>";
+      echo "<input type='hidden' name='is_recursive' value='" . $this->fields["is_recursive"] . "'>";
 
       echo "<tr class='tab_bg_1'>";
 
-      echo "<td>".__('Name')."</td>";
+      echo "<td>" . __('Name') . "</td>";
       echo "<td>";
-      Html::autocompletionTextField($this,"name");
+      Html::autocompletionTextField($this, "name");
       echo "</td>";
 
-      echo "<td>".__('Type')."</td>";
+      echo "<td>" . __('Type') . "</td>";
       echo "<td>";
       Dropdown::show('PluginDatabasesScriptType',
-            array('name' => "plugin_databases_scripttypes_id",
-                  'value' => $this->fields["plugin_databases_scripttypes_id"]));
+         array('name' => "plugin_databases_scripttypes_id",
+            'value' => $this->fields["plugin_databases_scripttypes_id"]));
       echo "</td>";
 
       echo "</tr>";
 
       echo "<tr class='tab_bg_1'>";
 
-      echo "<td>".__('Path', 'databases')."</td>";
+      echo "<td>" . __('Path', 'databases') . "</td>";
       echo "<td>";
-      Html::autocompletionTextField($this,"path");
+      Html::autocompletionTextField($this, "path");
       echo "</td>";
 
       echo "<td></td>";
@@ -143,10 +182,10 @@ class PluginDatabasesScript extends CommonDBChild {
 
       echo "<td colspan = '4'>";
       echo "<table cellpadding='2' cellspacing='2' border='0'><tr><td>";
-      echo __('Comments')."</td></tr>";
+      echo __('Comments') . "</td></tr>";
       echo "<tr>";
       echo "<td class='center'>";
-      echo "<textarea cols='125' rows='3' name='comment'>".$this->fields["comment"]."</textarea>";
+      echo "<textarea cols='125' rows='3' name='comment'>" . $this->fields["comment"] . "</textarea>";
       echo "</td></tr></table>";
       echo "</td>";
 
@@ -160,16 +199,22 @@ class PluginDatabasesScript extends CommonDBChild {
 
    /**
     * @since version 0.84
-   **/
-   function getForbiddenStandardMassiveAction() {
+    **/
+   function getForbiddenStandardMassiveAction()
+   {
 
-      $forbidden   = parent::getForbiddenStandardMassiveAction();
+      $forbidden = parent::getForbiddenStandardMassiveAction();
       $forbidden[] = 'update';
       return $forbidden;
    }
 
-   function showScripts(PluginDatabasesDatabase $database) {
-      global $DB,$CFG_GLPI;
+   /**
+    * @param PluginDatabasesDatabase $database
+    * @return bool
+    */
+   function showScripts(PluginDatabasesDatabase $database)
+   {
+      global $DB, $CFG_GLPI;
 
       $instID = $database->fields['id'];
 
@@ -177,7 +222,7 @@ class PluginDatabasesScript extends CommonDBChild {
          return false;
       }
 
-      $rand=mt_rand();
+      $rand = mt_rand();
       $canedit = $database->can($instID, UPDATE);
 
       $query = "SELECT `glpi_plugin_databases_scripts`.`name` AS name,
@@ -187,11 +232,11 @@ class PluginDatabasesScript extends CommonDBChild {
                         `glpi_plugin_databases_scripts`.`comment`,
                         `glpi_plugin_databases_scripttypes`.`name` AS type
                FROM `glpi_plugin_databases_scripts` ";
-      $query.= " LEFT JOIN `glpi_plugin_databases_scripttypes`
+      $query .= " LEFT JOIN `glpi_plugin_databases_scripttypes`
       ON (`glpi_plugin_databases_scripttypes`.`id` = `glpi_plugin_databases_scripts`.`plugin_databases_scripttypes_id`)";
-      $query.= " LEFT JOIN `glpi_plugin_databases_databases`
+      $query .= " LEFT JOIN `glpi_plugin_databases_databases`
       ON (`glpi_plugin_databases_databases`.`id` = `glpi_plugin_databases_scripts`.`plugin_databases_databases_id`)";
-      $query.= " WHERE `glpi_plugin_databases_scripts`.`plugin_databases_databases_id` = '$instID'
+      $query .= " WHERE `glpi_plugin_databases_scripts`.`plugin_databases_databases_id` = '$instID'
           ORDER BY `glpi_plugin_databases_scripts`.`name`";
       $result = $DB->query($query);
       $number = $DB->numrows($result);
@@ -199,34 +244,34 @@ class PluginDatabasesScript extends CommonDBChild {
       echo "<div class='spaced'>";
 
       if ($canedit && $number) {
-         Html::openMassiveActionsForm('mass'.__CLASS__.$rand);
+         Html::openMassiveActionsForm('mass' . __CLASS__ . $rand);
          $massiveactionparams = array();
          Html::showMassiveActions(
-         $massiveactionparams);
+            $massiveactionparams);
       }
 
-      if($number!=0){
+      if ($number != 0) {
          echo "<table class='tab_cadre_fixe'>";
          echo "<tr>";
 
          if ($canedit && $number) {
-            echo "<th width='10'>".Html::getCheckAllAsCheckbox('mass'.__CLASS__.$rand)."</th>";
+            echo "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand) . "</th>";
          }
 
-         echo "<th>".__('Name')."</th>";
-         echo "<th>".__('Type')."</th>";
-         echo "<th>".__('Path', 'databases')."</th>";
-         echo "<th>".__('Comments')."</th>";
+         echo "<th>" . __('Name') . "</th>";
+         echo "<th>" . __('Type') . "</th>";
+         echo "<th>" . __('Path', 'databases') . "</th>";
+         echo "<th>" . __('Comments') . "</th>";
 
          echo "</tr>";
 
-         Session::initNavigateListItems($this->getType(),PluginDatabasesDatabase::getTypeName(2) ." = ". $database->fields["name"]);
+         Session::initNavigateListItems($this->getType(), PluginDatabasesDatabase::getTypeName(2) . " = " . $database->fields["name"]);
          $i = 0;
-         $row_num=1;
+         $row_num = 1;
 
-         while ($data=$DB->fetch_array($result)) {
+         while ($data = $DB->fetch_array($result)) {
 
-            Session::addToNavigateListItems($this->getType(),$data['id']);
+            Session::addToNavigateListItems($this->getType(), $data['id']);
 
             $i++;
             $row_num++;
@@ -238,26 +283,24 @@ class PluginDatabasesScript extends CommonDBChild {
             echo "</td>";
 
             echo "<td class='center'>";
-            echo "<a href='".$CFG_GLPI["root_doc"]."/plugins/databases/front/script.form.php?id=".$data["id"]."&amp;plugin_databases_databases_id=".$data["plugin_databases_databases_id"]."'>";
+            echo "<a href='" . $CFG_GLPI["root_doc"] . "/plugins/databases/front/script.form.php?id=" . $data["id"] . "&amp;plugin_databases_databases_id=" . $data["plugin_databases_databases_id"] . "'>";
             echo $data["name"];
-            if ($_SESSION["glpiis_ids_visible"] || empty($data["name"])) echo " (".$data["id"].")";
+            if ($_SESSION["glpiis_ids_visible"] || empty($data["name"])) echo " (" . $data["id"] . ")";
             echo "</a></td>";
 
-            echo "<td class='center'>".$data["type"]."</td>";
-            echo "<td class='left'>".$data["path"]."</td>";
-            echo "<td class='center'>".nl2br($data["comment"])."</td>";
+            echo "<td class='center'>" . $data["type"] . "</td>";
+            echo "<td class='left'>" . $data["path"] . "</td>";
+            echo "<td class='center'>" . nl2br($data["comment"]) . "</td>";
             echo "</tr>";
          }
          echo "</table>";
       }
 
       if ($canedit && $number) {
-         $paramsma['ontop'] =false;
+         $paramsma['ontop'] = false;
          Html::showMassiveActions($paramsma);
          Html::closeForm();
       }
       echo "</div>";
    }
 }
-
-?>

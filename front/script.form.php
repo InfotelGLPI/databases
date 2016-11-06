@@ -27,36 +27,36 @@
  --------------------------------------------------------------------------
  */
 
-include ('../../../inc/includes.php');
+include('../../../inc/includes.php');
 
-if(!isset($_GET["id"])) $_GET["id"] = "";
-if(!isset($_GET["withtemplate"])) $_GET["withtemplate"] = "";
-if(!isset($_GET["plugin_databases_databases_id"])) $_GET["plugin_databases_databases_id"] = "";
+if (!isset($_GET["id"])) $_GET["id"] = "";
+if (!isset($_GET["withtemplate"])) $_GET["withtemplate"] = "";
+if (!isset($_GET["plugin_databases_databases_id"])) $_GET["plugin_databases_databases_id"] = "";
 
-$script=new PluginDatabasesScript();
+$script = new PluginDatabasesScript();
 
 if (isset($_POST["add"])) {
 
    if ($script->canCreate())
       $script->add($_POST);
    Html::back();
-      
+
 } else if (isset($_POST["update"])) {
-   
+
    if ($script->canCreate())
       $script->update($_POST);
    Html::back();
 
 } else if (isset($_POST["delete"])) {
-   
-  if ($script->canCreate())
-      $script->delete($_POST,1);
-   Html::redirect(Toolbox::getItemTypeFormURL('PluginDatabasesDatabase')."?id=".$_POST["plugin_databases_databases_id"]);
+
+   if ($script->canCreate())
+      $script->delete($_POST, 1);
+   Html::redirect(Toolbox::getItemTypeFormURL('PluginDatabasesDatabase') . "?id=" . $_POST["plugin_databases_databases_id"]);
 
 } else if (isset($_POST["delete_script"])) {
    if ($script->canCreate()) {
       foreach ($_POST["check"] as $ID => $value) {
-         $script->delete(array("id"=>$ID),1);
+         $script->delete(array("id" => $ID), 1);
       }
    }
    Html::back();
@@ -64,19 +64,17 @@ if (isset($_POST["add"])) {
 } else {
 
    $script->checkGlobal(READ);
-   
+
    $plugin = new Plugin();
    if ($plugin->isActivated("environment")) {
       Html::header(PluginDatabasesDatabase::getTypeName(2),
-                     '',"assets","pluginenvironmentdisplay","databases");
+         '', "assets", "pluginenvironmentdisplay", "databases");
    } else {
       Html::header(PluginDatabasesDatabase::getTypeName(2), '', "assets",
-                   "plugindatabasesmenu");
+         "plugindatabasesmenu");
    }
 
    $script->display($_GET);
-   
+
    Html::footer();
 }
-
-?>

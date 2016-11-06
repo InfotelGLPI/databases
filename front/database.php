@@ -27,14 +27,14 @@
  --------------------------------------------------------------------------
  */
 
-include ('../../../inc/includes.php');
+include('../../../inc/includes.php');
 
 $plugin = new Plugin();
 if ($plugin->isActivated("environment")) {
    Html::header(PluginDatabasesDatabase::getTypeName(2)
-                  ,'',"assets","pluginenvironmentdisplay","databases");
+      , '', "assets", "pluginenvironmentdisplay", "databases");
 } else {
-   Html::header(PluginDatabasesDatabase::getTypeName(2), '', "assets","plugindatabasesmenu");
+   Html::header(PluginDatabasesDatabase::getTypeName(2), '', "assets", "plugindatabasesmenu");
 }
 $database = new PluginDatabasesDatabase();
 
@@ -45,5 +45,3 @@ if ($database->canView() || Session::haveRight("config", UPDATE)) {
 }
 
 Html::footer();
-
-?>

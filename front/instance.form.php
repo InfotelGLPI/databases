@@ -27,13 +27,13 @@
  --------------------------------------------------------------------------
  */
 
-include ('../../../inc/includes.php');
+include('../../../inc/includes.php');
 
-if(!isset($_GET["id"])) $_GET["id"] = "";
-if(!isset($_GET["withtemplate"])) $_GET["withtemplate"] = "";
-if(!isset($_GET["plugin_databases_databases_id"])) $_GET["plugin_databases_databases_id"] = "";
+if (!isset($_GET["id"])) $_GET["id"] = "";
+if (!isset($_GET["withtemplate"])) $_GET["withtemplate"] = "";
+if (!isset($_GET["plugin_databases_databases_id"])) $_GET["plugin_databases_databases_id"] = "";
 
-$instance=new PluginDatabasesInstance();
+$instance = new PluginDatabasesInstance();
 
 if (isset($_POST["add"])) {
 
@@ -42,21 +42,21 @@ if (isset($_POST["add"])) {
    Html::back();
 
 } else if (isset($_POST["update"])) {
-   
+
    if ($instance->canCreate())
       $instance->update($_POST);
    Html::back();
 
 } else if (isset($_POST["delete"])) {
-   
-  if ($instance->canCreate())
-      $instance->delete($_POST,1);
-   Html::redirect(Toolbox::getItemTypeFormURL('PluginDatabasesDatabase')."?id=".$_POST["plugin_databases_databases_id"]);
+
+   if ($instance->canCreate())
+      $instance->delete($_POST, 1);
+   Html::redirect(Toolbox::getItemTypeFormURL('PluginDatabasesDatabase') . "?id=" . $_POST["plugin_databases_databases_id"]);
 
 } else if (isset($_POST["delete_instance"])) {
    if ($instance->canCreate()) {
       foreach ($_POST["check"] as $ID => $value) {
-         $instance->delete(array("id"=>$ID),1);
+         $instance->delete(array("id" => $ID), 1);
       }
    }
    Html::back();
@@ -64,18 +64,16 @@ if (isset($_POST["add"])) {
 } else {
 
    $instance->checkGlobal(READ);
-   
+
    $plugin = new Plugin();
    if ($plugin->isActivated("environment")) {
       Html::header(PluginDatabasesDatabase::getTypeName(2),
-                     '',"assets","pluginenvironmentdisplay","databases");
+         '', "assets", "pluginenvironmentdisplay", "databases");
    } else {
       Html::header(PluginDatabasesDatabase::getTypeName(2), '', "assets",
-                   "plugindatabasesmenu");
+         "plugindatabasesmenu");
    }
    $instance->display($_GET);
-   
+
    Html::footer();
 }
-
-?>

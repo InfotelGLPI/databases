@@ -27,9 +27,9 @@
  --------------------------------------------------------------------------
  */
 
-if (strpos($_SERVER['PHP_SELF'],"dropdownTypeDatabases.php")) {
-   $AJAX_INCLUDE=1;
-   include ('../../../inc/includes.php');
+if (strpos($_SERVER['PHP_SELF'], "dropdownTypeDatabases.php")) {
+   $AJAX_INCLUDE = 1;
+   include('../../../inc/includes.php');
    header("Content-Type: text/html; charset=UTF-8");
    Html::header_nocache();
 }
@@ -44,8 +44,8 @@ if (isset($_POST["databasetype"])) {
    if (isset($_POST['used']) && is_array($_POST['used']) && (count($_POST['used']) > 0)) {
       $query = "SELECT `id`
                 FROM `glpi_plugin_databases_databases`
-                WHERE `id` IN (".implode(',',$_POST['used']).")
-                      AND `plugin_databases_databasetypes_id` = '".$_POST["databasetype"]."'";
+                WHERE `id` IN (" . implode(',', $_POST['used']) . ")
+                      AND `plugin_databases_databasetypes_id` = '" . $_POST["databasetype"] . "'";
 
       foreach ($DB->request($query) AS $data) {
          $used[$data['id']] = $data['id'];
@@ -53,13 +53,11 @@ if (isset($_POST["databasetype"])) {
    }
 
    Dropdown::show('PluginDatabasesDatabase',
-                  array('name'      => $_POST['myname'],
-                        'used'      => $used,
-                        'width'     => '50%',
-                        'entity'    => $_POST['entity'],
-                        'rand'      => $_POST['rand'],
-                        'condition' => "glpi_plugin_databases_databases.plugin_databases_databasetypes_id='".$_POST["databasetype"]."'"));
+      array('name' => $_POST['myname'],
+         'used' => $used,
+         'width' => '50%',
+         'entity' => $_POST['entity'],
+         'rand' => $_POST['rand'],
+         'condition' => "glpi_plugin_databases_databases.plugin_databases_databasetypes_id='" . $_POST["databasetype"] . "'"));
 
 }
-
-?>
