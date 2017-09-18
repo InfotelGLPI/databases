@@ -28,27 +28,26 @@
  */
 
 // Init the hooks of the plugins -Needed
-function plugin_init_databases()
-{
+function plugin_init_databases() {
    global $PLUGIN_HOOKS;
 
-   $PLUGIN_HOOKS['csrf_compliant']['databases'] = true;
-   $PLUGIN_HOOKS['change_profile']['databases'] = array('PluginDatabasesProfile', 'initProfile');
+   $PLUGIN_HOOKS['csrf_compliant']['databases']   = true;
+   $PLUGIN_HOOKS['change_profile']['databases']   = array('PluginDatabasesProfile', 'initProfile');
    $PLUGIN_HOOKS['assign_to_ticket']['databases'] = true;
 
    //$PLUGIN_HOOKS['assign_to_ticket_dropdown']['databases'] = true;
    //$PLUGIN_HOOKS['assign_to_ticket_itemtype']['databases'] = array('PluginDatabasesDatabase_Item');
 
    Plugin::registerClass('PluginDatabasesDatabase', array(
-      'linkgroup_tech_types' => true,
-      'linkuser_tech_types' => true,
-      'document_types' => true,
-      'ticket_types' => true,
+      'linkgroup_tech_types'   => true,
+      'linkuser_tech_types'    => true,
+      'document_types'         => true,
+      'ticket_types'           => true,
       'helpdesk_visible_types' => true,
-      'addtabon' => 'Supplier'
+      'addtabon'               => 'Supplier'
    ));
    Plugin::registerClass('PluginDatabasesProfile',
-      array('addtabon' => 'Profile'));
+                         array('addtabon' => 'Profile'));
 
    //Plugin::registerClass('PluginDatabasesDatabase_Item',
    //                      array('ticket_types' => true));
@@ -61,7 +60,7 @@ function plugin_init_databases()
 
       $plugin = new Plugin();
       if (!$plugin->isActivated('environment')
-         && Session::haveRight("plugin_databases", READ)
+          && Session::haveRight("plugin_databases", READ)
       ) {
 
          $PLUGIN_HOOKS['menu_toadd']['databases'] = array('assets' => 'PluginDatabasesMenu');
@@ -87,17 +86,16 @@ function plugin_init_databases()
 /**
  * @return array
  */
-function plugin_version_databases()
-{
+function plugin_version_databases() {
 
    return array(
-      'name' => _n('Database', 'Databases', 2, 'databases'),
-      'version' => '1.9.0',
-      'author' => "<a href='http://infotel.com/services/expertise-technique/glpi/'>Infotel</a>",
-      'oldname' => 'sgbd',
-      'license' => 'GPLv2+',
-      'homepage' => 'https://github.com/InfotelGLPI/databases',
-      'minGlpiVersion' => '0.90',
+      'name'           => _n('Database', 'Databases', 2, 'databases'),
+      'version'        => '1.9.0',
+      'author'         => "<a href='http://infotel.com/services/expertise-technique/glpi/'>Infotel</a>",
+      'oldname'        => 'sgbd',
+      'license'        => 'GPLv2+',
+      'homepage'       => 'https://github.com/InfotelGLPI/databases',
+      'minGlpiVersion' => '9.2',
    );
 
 }
@@ -106,10 +104,9 @@ function plugin_version_databases()
 /**
  * @return bool
  */
-function plugin_databases_check_prerequisites()
-{
-   if (version_compare(GLPI_VERSION, '0.90', 'lt') || version_compare(GLPI_VERSION, '9.2', 'ge')) {
-      _e('This plugin requires GLPI >= 0.90', 'databases');
+function plugin_databases_check_prerequisites() {
+   if (version_compare(GLPI_VERSION, '9.2', 'lt') || version_compare(GLPI_VERSION, '9.3', 'ge')) {
+      echo __('This plugin requires GLPI >= 9.2');
       return false;
    }
    return true;
@@ -119,17 +116,16 @@ function plugin_databases_check_prerequisites()
 /**
  * @return bool
  */
-function plugin_databases_check_config()
-{
+function plugin_databases_check_config() {
    return true;
 }
 
 /**
  * @param $types
+ *
  * @return mixed
  */
-function plugin_datainjection_migratetypes_databases($types)
-{
+function plugin_datainjection_migratetypes_databases($types) {
    $types[2400] = 'PluginDatabasesDatabase';
    return $types;
 }
