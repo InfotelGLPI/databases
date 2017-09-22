@@ -34,16 +34,15 @@ if (!defined('GLPI_ROOT')) {
 /**
  * Class PluginDatabasesDatabase_Item
  */
-class PluginDatabasesDatabase_Item extends CommonDBRelation
-{
+class PluginDatabasesDatabase_Item extends CommonDBRelation {
 
    // From CommonDBRelation
-   static public $itemtype_1 = "PluginDatabasesDatabase";
-   static public $items_id_1 = 'plugin_databases_databases_id';
+   static public $itemtype_1    = "PluginDatabasesDatabase";
+   static public $items_id_1    = 'plugin_databases_databases_id';
    static public $take_entity_1 = false;
 
-   static public $itemtype_2 = 'itemtype';
-   static public $items_id_2 = 'items_id';
+   static public $itemtype_2    = 'itemtype';
+   static public $items_id_2    = 'items_id';
    static public $take_entity_2 = true;
 
    static $rightname = "plugin_databases";
@@ -61,15 +60,15 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
     * Clean table when item is purged
     *
     * @param CommonDBTM|Object $item Object to use
+    *
     * @return nothing
     */
-   public static function cleanForItem(CommonDBTM $item)
-   {
+   public static function cleanForItem(CommonDBTM $item) {
 
       $temp = new self();
       $temp->deleteByCriteria(
          array('itemtype' => $item->getType(),
-            'items_id' => $item->getField('id'))
+               'items_id' => $item->getField('id'))
       );
    }
 
@@ -82,15 +81,15 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
     * @since version 0.83
     *
     * @param CommonDBTM|CommonGLPI $item CommonDBTM object for which the tab need to be displayed
-    * @param bool|int $withtemplate boolean  is a template object ? (default 0)
+    * @param bool|int              $withtemplate boolean  is a template object ? (default 0)
+    *
     * @return string tab name
     */
-   public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
-   {
+   public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if (!$withtemplate) {
          if ($item->getType() == 'PluginDatabasesDatabase'
-            && count(PluginDatabasesDatabase::getTypes(false))
+             && count(PluginDatabasesDatabase::getTypes(false))
          ) {
             if ($_SESSION['glpishow_count_on_tabs']) {
                return self::createTabEntry(_n('Associated item', 'Associated items', 2), self::countForDatabase($item));
@@ -98,7 +97,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
             return _n('Associated item', 'Associated items', 2);
 
          } else if (in_array($item->getType(), PluginDatabasesDatabase::getTypes(true))
-            && Session::haveRight('plugin_databases', READ)
+                    && Session::haveRight('plugin_databases', READ)
          ) {
             if ($_SESSION['glpishow_count_on_tabs']) {
                return self::createTabEntry(PluginDatabasesDatabase::getTypeName(2), self::countForItem($item));
@@ -114,13 +113,13 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
     *
     * @since version 0.83
     *
-    * @param $item                  CommonGLPI object for which the tab need to be displayed
-    * @param $tabnum       integer  tab number (default 1)
+    * @param          $item                  CommonGLPI object for which the tab need to be displayed
+    * @param          $tabnum       integer  tab number (default 1)
     * @param bool|int $withtemplate boolean  is a template object ? (default 0)
+    *
     * @return true
     */
-   public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
-   {
+   public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       if ($item->getType() == 'PluginDatabasesDatabase') {
 
@@ -135,30 +134,31 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
 
    /**
     * @param PluginDatabasesDatabase $item
+    *
     * @return int
     */
-   static function countForDatabase(PluginDatabasesDatabase $item)
-   {
+   static function countForDatabase(PluginDatabasesDatabase $item) {
 
       $types = implode("','", $item->getTypes());
       if (empty($types)) {
          return 0;
       }
-      return countElementsInTable('glpi_plugin_databases_databases_items',
-         "`itemtype` IN ('$types')
+      $dbu = new DbUtils();
+      return $dbu->countElementsInTable('glpi_plugin_databases_databases_items',
+                                        "`itemtype` IN ('$types')
                                    AND `plugin_databases_databases_id` = '" . $item->getID() . "'");
    }
 
 
    /**
     * @param CommonDBTM $item
+    *
     * @return int
     */
-   static function countForItem(CommonDBTM $item)
-   {
-
-      return countElementsInTable('glpi_plugin_databases_databases_items',
-         "`itemtype`='" . $item->getType() . "'
+   static function countForItem(CommonDBTM $item) {
+      $dbu = new DbUtils();
+      return $dbu->countElementsInTable('glpi_plugin_databases_databases_items',
+                                        "`itemtype`='" . $item->getType() . "'
                                    AND `items_id` = '" . $item->getID() . "'");
    }
 
@@ -166,14 +166,14 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
     * @param $plugin_databases_databases_id
     * @param $items_id
     * @param $itemtype
+    *
     * @return bool
     */
-   function getFromDBbyDatabasesAndItem($plugin_databases_databases_id, $items_id, $itemtype)
-   {
+   function getFromDBbyDatabasesAndItem($plugin_databases_databases_id, $items_id, $itemtype) {
       global $DB;
 
       $query = "SELECT * FROM `" . $this->getTable() . "` " .
-         "WHERE `plugin_databases_databases_id` = '" . $plugin_databases_databases_id . "'
+               "WHERE `plugin_databases_databases_id` = '" . $plugin_databases_databases_id . "'
          AND `itemtype` = '" . $items_id . "'
          AND `items_id` = '" . $itemtype . "'";
       if ($result = $DB->query($query)) {
@@ -193,12 +193,11 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
    /**
     * @param $values
     */
-   function addItem($values)
-   {
+   function addItem($values) {
 
       $this->add(array('plugin_databases_databases_id' => $values["plugin_databases_databases_id"],
-         'items_id' => $values["items_id"],
-         'itemtype' => $values["itemtype"]));
+                       'items_id'                      => $values["items_id"],
+                       'itemtype'                      => $values["itemtype"]));
 
    }
 
@@ -207,8 +206,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
     * @param $items_id
     * @param $itemtype
     */
-   function deleteItemByDatabasesAndItem($plugin_databases_databases_id, $items_id, $itemtype)
-   {
+   function deleteItemByDatabasesAndItem($plugin_databases_databases_id, $items_id, $itemtype) {
 
       if ($this->getFromDBbyDatabasesAndItem($plugin_databases_databases_id, $items_id, $itemtype)) {
          $this->delete(array('id' => $this->fields["id"]));
@@ -218,10 +216,9 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
    /**
     * @since version 0.84
     **/
-   function getForbiddenStandardMassiveAction()
-   {
+   function getForbiddenStandardMassiveAction() {
 
-      $forbidden = parent::getForbiddenStandardMassiveAction();
+      $forbidden   = parent::getForbiddenStandardMassiveAction();
       $forbidden[] = 'update';
       return $forbidden;
    }
@@ -235,8 +232,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
     *
     * @return nothing (HTML display)
     **/
-   public static function showForDatabase(PluginDatabasesDatabase $database)
-   {
+   public static function showForDatabase(PluginDatabasesDatabase $database) {
       global $DB;
 
       $instID = $database->fields['id'];
@@ -268,20 +264,20 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
 
          echo "<table class='tab_cadre_fixe'>";
          echo "<tr class='tab_bg_2'><th colspan='" . ($canedit ? (5 + $colsup) : (4 + $colsup)) . "'>" .
-            __('Add an item') . "</th></tr>";
+              __('Add an item') . "</th></tr>";
 
          echo "<tr class='tab_bg_1'><td colspan='" . (3 + $colsup) . "' class='center'>";
          echo "<input type='hidden' name='plugin_databases_databases_id' value='$instID'>";
          Dropdown::showSelectItemFromItemtypes(array('items_id_name' => 'items_id',
-            'itemtypes' => PluginDatabasesDatabase::getTypes(true),
-            'entity_restrict'
-            => ($database->fields['is_recursive']
-               ? getSonsOf('glpi_entities',
-                  $database->fields['entities_id'])
-               : $database->fields['entities_id']),
-            'checkright'
-            => true,
-         ));
+                                                     'itemtypes'     => PluginDatabasesDatabase::getTypes(true),
+                                                     'entity_restrict'
+                                                                     => ($database->fields['is_recursive']
+                                                        ? getSonsOf('glpi_entities',
+                                                                    $database->fields['entities_id'])
+                                                        : $database->fields['entities_id']),
+                                                     'checkright'
+                                                                     => true,
+                                               ));
          echo "</td>";
          echo "<td colspan='2' class='tab_bg_2'>";
          echo "<input type='submit' name='additem' value=\"" . _sx('button', 'Add') . "\" class='submit'>";
@@ -320,18 +316,18 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
          }
 
          if ($item->canView()) {
-            $column = "name";
+            $column    = "name";
             $itemTable = getTableForItemType($itemType);
 
             $query = "SELECT `" . $itemTable . "`.*,
                              `glpi_plugin_databases_databases_items`.`id` AS items_id,
                              `glpi_entities`.`id` AS entity "
-               . " FROM `glpi_plugin_databases_databases_items`, `" . $itemTable
-               . "` LEFT JOIN `glpi_entities` ON (`glpi_entities`.`id` = `" . $itemTable . "`.`entities_id`) "
-               . " WHERE `" . $itemTable . "`.`id` = `glpi_plugin_databases_databases_items`.`items_id`
+                     . " FROM `glpi_plugin_databases_databases_items`, `" . $itemTable
+                     . "` LEFT JOIN `glpi_entities` ON (`glpi_entities`.`id` = `" . $itemTable . "`.`entities_id`) "
+                     . " WHERE `" . $itemTable . "`.`id` = `glpi_plugin_databases_databases_items`.`items_id`
                 AND `glpi_plugin_databases_databases_items`.`itemtype` = '$itemType'
                 AND `glpi_plugin_databases_databases_items`.`plugin_databases_databases_id` = '$instID' "
-               . getEntitiesRestrictRequest(" AND ", $itemTable, '', '', $item->maybeRecursive());
+                     . getEntitiesRestrictRequest(" AND ", $itemTable, '', '', $item->maybeRecursive());
 
             if ($item->maybeTemplate()) {
                $query .= " AND `" . $itemTable . "`.`is_template` = '0'";
@@ -356,7 +352,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
 
                      $link = Toolbox::getItemTypeFormURL($itemType);
                      $name = "<a href=\"" . $link . "?id=" . $data["id"] . "\">"
-                        . $data["name"] . "$ID</a>";
+                             . $data["name"] . "$ID</a>";
 
                      echo "<tr class='tab_bg_1'>";
 
@@ -368,7 +364,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
                      echo "<td class='center'>" . $item::getTypeName(1) . "</td>";
 
                      echo "<td class='center' " . (isset($data['is_deleted']) && $data['is_deleted'] ? "class='tab_bg_2_2'" : "") .
-                        ">" . $name . "</td>";
+                          ">" . $name . "</td>";
 
                      if (Session::isMultiEntitiesMode())
                         echo "<td class='center'>" . Dropdown::getDropdownName("glpi_entities", $data['entity']) . "</td>";
@@ -402,8 +398,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
     *
     * @return bool
     */
-   static function showForItem(CommonDBTM $item, $withtemplate = '')
-   {
+   static function showForItem(CommonDBTM $item, $withtemplate = '') {
       global $DB, $CFG_GLPI;
 
       $ID = $item->getField('id');
@@ -423,8 +418,8 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
          $withtemplate = 0;
       }
 
-      $canedit = $item->canAddItem('PluginDatabasesDatabase');
-      $rand = mt_rand();
+      $canedit      = $item->canAddItem('PluginDatabasesDatabase');
+      $rand         = mt_rand();
       $is_recursive = $item->isRecursive();
 
       $query = "SELECT `glpi_plugin_databases_databases_items`.`id` AS assocID,
@@ -444,22 +439,22 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
 
       $result = $DB->query($query);
       $number = $DB->numrows($result);
-      $i = 0;
+      $i      = 0;
 
       $databases = array();
-      $database = new PluginDatabasesDatabase();
-      $used = array();
+      $database  = new PluginDatabasesDatabase();
+      $used      = array();
       if ($numrows = $DB->numrows($result)) {
          while ($data = $DB->fetch_assoc($result)) {
             $databases[$data['assocID']] = $data;
-            $used[$data['id']] = $data['id'];
+            $used[$data['id']]           = $data['id'];
          }
       }
 
       if ($canedit && $withtemplate < 2) {
          // Restrict entity for knowbase
          $entities = "";
-         $entity = $_SESSION["glpiactive_entity"];
+         $entity   = $_SESSION["glpiactive_entity"];
 
          if ($item->isEntityAssign()) {
             /// Case of personal items : entity = -1 : create on active entity (Reminder case))
@@ -474,19 +469,19 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
             }
          }
          $limit = getEntitiesRestrictRequest(" AND ", "glpi_plugin_databases_databases", '', $entities, true);
-         $q = "SELECT COUNT(*)
+         $q     = "SELECT COUNT(*)
                FROM `glpi_plugin_databases_databases`
                WHERE `is_deleted` = '0'
                $limit";
 
          $result = $DB->query($q);
-         $nb = $DB->result($result, 0, 0);
+         $nb     = $DB->result($result, 0, 0);
 
          echo "<div class='firstbloc'>";
 
 
          if (Session::haveRight('plugin_databases', READ)
-            && ($nb > count($used))
+             && ($nb > count($used))
          ) {
             echo "<form name='database_form$rand' id='database_form$rand' method='post'
                    action='" . Toolbox::getItemTypeFormURL('PluginDatabasesDatabase') . "'>";
@@ -502,11 +497,11 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
             }
 
             PluginDatabasesDatabase::dropdownDatabase(array('entity' => $entities,
-               'used' => $used));
+                                                            'used'   => $used));
 
             echo "</td><td class='center' width='20%'>";
             echo "<input type='submit' name='additem' value=\"" .
-               _sx('button', 'Associate a database', 'databases') . "\" class='submit'>";
+                 _sx('button', 'Associate a database', 'databases') . "\" class='submit'>";
             echo "</td>";
             echo "</tr>";
             echo "</table>";
@@ -544,13 +539,13 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
          Session::initNavigateListItems('PluginDatabasesDatabase',
             //TRANS : %1$s is the itemtype name,
             //        %2$s is the name of the item (used for headings of a list)
-            sprintf(__('%1$s = %2$s'),
-               $item->getTypeName(1), $item->getName()));
+                                        sprintf(__('%1$s = %2$s'),
+                                                $item->getTypeName(1), $item->getName()));
 
 
          foreach ($databases as $data) {
             $databaseID = $data["id"];
-            $link = NOT_AVAILABLE;
+            $link       = NOT_AVAILABLE;
 
             if ($database->getFromDB($databaseID)) {
                $link = $database->getLink();
@@ -569,7 +564,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation
             echo "<td class='center'>$link</td>";
             if (Session::isMultiEntitiesMode()) {
                echo "<td class='center'>" . Dropdown::getDropdownName("glpi_entities", $data['entities_id']) .
-                  "</td>";
+                    "</td>";
             }
             echo "<td>" . Dropdown::getDropdownName("glpi_plugin_databases_servertypes", $data["plugin_databases_servertypes_id"]) . "</td>";
             echo "<td>" . Dropdown::getDropdownName("glpi_plugin_databases_databasetypes", $data["plugin_databases_databasetypes_id"]) . "</td>";

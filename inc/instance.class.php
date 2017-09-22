@@ -34,8 +34,7 @@ if (!defined('GLPI_ROOT')) {
 /**
  * Class PluginDatabasesInstance
  */
-class PluginDatabasesInstance extends CommonDBChild
-{
+class PluginDatabasesInstance extends CommonDBChild {
 
    static $rightname = "plugin_databases";
 
@@ -45,21 +44,21 @@ class PluginDatabasesInstance extends CommonDBChild
 
    /**
     * @param int $nb
+    *
     * @return translated
     */
-   static function getTypeName($nb = 0)
-   {
+   static function getTypeName($nb = 0) {
 
       return _n('Instance', 'Instances', $nb, 'databases');
    }
 
    /**
     * @param CommonGLPI $item
-    * @param int $withtemplate
+    * @param int        $withtemplate
+    *
     * @return array|string|translated
     */
-   function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
-   {
+   function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if ($item->getType() == 'PluginDatabasesDatabase') {
          if ($_SESSION['glpishow_count_on_tabs']) {
@@ -72,24 +71,24 @@ class PluginDatabasesInstance extends CommonDBChild
 
    /**
     * @param CommonDBTM $item
+    *
     * @return int
     */
-   static function countForItem(CommonDBTM $item)
-   {
-
-      return countElementsInTable('glpi_plugin_databases_instances',
-         "`plugin_databases_databases_id` = '" . $item->getID() . "'");
+   static function countForItem(CommonDBTM $item) {
+      $dbu = new DbUtils();
+      return $dbu->countElementsInTable('glpi_plugin_databases_instances',
+                                        "`plugin_databases_databases_id` = '" . $item->getID() . "'");
    }
 
 
    /**
     * @param CommonGLPI $item
-    * @param int $tabnum
-    * @param int $withtemplate
+    * @param int        $tabnum
+    * @param int        $withtemplate
+    *
     * @return bool
     */
-   static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
-   {
+   static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
       global $CFG_GLPI;
 
       if ($item->getType() == 'PluginDatabasesDatabase') {
@@ -97,7 +96,7 @@ class PluginDatabasesInstance extends CommonDBChild
 
          $self->showInstances($item);
          $self->showForm("", array('plugin_databases_databases_id' => $item->getField('id'),
-            'target' => $CFG_GLPI['root_doc'] . "/plugins/databases/front/instance.form.php"));
+                                   'target'                        => $CFG_GLPI['root_doc'] . "/plugins/databases/front/instance.form.php"));
       }
       return true;
    }
@@ -105,20 +104,19 @@ class PluginDatabasesInstance extends CommonDBChild
    /**
     *
     */
-   function post_getEmpty()
-   {
+   function post_getEmpty() {
       $this->fields["port"] = '0';
    }
 
    /**
     * @param datas $input
+    *
     * @return bool|datas
     */
-   function prepareInputForAdd($input)
-   {
+   function prepareInputForAdd($input) {
       // Not attached to reference -> not added
       if (!isset($input['plugin_databases_databases_id'])
-         || $input['plugin_databases_databases_id'] <= 0
+          || $input['plugin_databases_databases_id'] <= 0
       ) {
          return false;
       }
@@ -126,12 +124,12 @@ class PluginDatabasesInstance extends CommonDBChild
    }
 
    /**
-    * @param $ID
+    * @param       $ID
     * @param array $options
+    *
     * @return bool
     */
-   function showForm($ID, $options = array())
-   {
+   function showForm($ID, $options = array()) {
 
       if (!$this->canView()) return false;
 
@@ -147,8 +145,8 @@ class PluginDatabasesInstance extends CommonDBChild
          $database->getFromDB($plugin_databases_databases_id);
          // Create item
          $input = array('plugin_databases_databases_id' => $plugin_databases_databases_id,
-            'entities_id' => $database->getEntityID(),
-            'is_recursive' => $database->isRecursive());
+                        'entities_id'                   => $database->getEntityID(),
+                        'is_recursive'                  => $database->isRecursive());
          $this->check(-1, UPDATE, $input);
       }
 
@@ -206,20 +204,19 @@ class PluginDatabasesInstance extends CommonDBChild
    /**
     * @since version 0.84
     **/
-   function getForbiddenStandardMassiveAction()
-   {
+   function getForbiddenStandardMassiveAction() {
 
-      $forbidden = parent::getForbiddenStandardMassiveAction();
+      $forbidden   = parent::getForbiddenStandardMassiveAction();
       $forbidden[] = 'update';
       return $forbidden;
    }
 
    /**
     * @param PluginDatabasesDatabase $database
+    *
     * @return bool
     */
-   function showInstances(PluginDatabasesDatabase $database)
-   {
+   function showInstances(PluginDatabasesDatabase $database) {
       global $DB, $CFG_GLPI;
 
       $instID = $database->fields['id'];
@@ -229,7 +226,7 @@ class PluginDatabasesInstance extends CommonDBChild
       }
 
       $canedit = $database->can($instID, UPDATE);
-      $rand = mt_rand();
+      $rand    = mt_rand();
 
       $query = "SELECT `glpi_plugin_databases_instances`.`name`,
                      `glpi_plugin_databases_instances`.`id`,
@@ -270,7 +267,7 @@ class PluginDatabasesInstance extends CommonDBChild
          echo "</tr>";
 
          Session::initNavigateListItems($this->getType(), PluginDatabasesDatabase::getTypeName(2) . " = " . $database->fields["name"]);
-         $i = 0;
+         $i       = 0;
          $row_num = 1;
 
          while ($data = $DB->fetch_array($result)) {
