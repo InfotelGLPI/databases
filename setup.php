@@ -90,7 +90,7 @@ function plugin_version_databases() {
 
    return array(
       'name'           => _n('Database', 'Databases', 2, 'databases'),
-      'version'        => '1.9.0',
+      'version'        => '2.0.0',
       'author'         => "<a href='http://infotel.com/services/expertise-technique/glpi/'>Infotel</a>",
       'oldname'        => 'sgbd',
       'license'        => 'GPLv2+',
