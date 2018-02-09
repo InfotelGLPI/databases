@@ -9,7 +9,7 @@
  -------------------------------------------------------------------------
 
  LICENSE
-      
+
  This file is part of databases.
 
  databases is free software; you can redistribute it and/or modify
@@ -95,8 +95,8 @@ class PluginDatabasesScript extends CommonDBChild {
          $self = new self();
 
          $self->showScripts($item);
-         $self->showForm("", array('plugin_databases_databases_id' => $item->getField('id'),
-                                   'target'                        => $CFG_GLPI['root_doc'] . "/plugins/databases/front/script.form.php"));
+         $self->showForm("", ['plugin_databases_databases_id' => $item->getField('id'),
+                                   'target'                        => $CFG_GLPI['root_doc'] . "/plugins/databases/front/script.form.php"]);
       }
       return true;
    }
@@ -122,9 +122,11 @@ class PluginDatabasesScript extends CommonDBChild {
     *
     * @return bool
     */
-   function showForm($ID, $options = array()) {
+   function showForm($ID, $options = []) {
 
-      if (!$this->canView()) return false;
+      if (!$this->canView()) {
+         return false;
+      }
 
       $plugin_databases_databases_id = -1;
       if (isset($options['plugin_databases_databases_id'])) {
@@ -137,9 +139,9 @@ class PluginDatabasesScript extends CommonDBChild {
          $database = new PluginDatabasesDatabase();
          $database->getFromDB($plugin_databases_databases_id);
          // Create item
-         $input = array('plugin_databases_databases_id' => $plugin_databases_databases_id,
+         $input = ['plugin_databases_databases_id' => $plugin_databases_databases_id,
                         'entities_id'                   => $database->getEntityID(),
-                        'is_recursive'                  => $database->isRecursive());
+                        'is_recursive'                  => $database->isRecursive()];
          $this->check(-1, UPDATE, $input);
       }
 
@@ -159,8 +161,8 @@ class PluginDatabasesScript extends CommonDBChild {
       echo "<td>" . __('Type') . "</td>";
       echo "<td>";
       Dropdown::show('PluginDatabasesScriptType',
-                     array('name'  => "plugin_databases_scripttypes_id",
-                           'value' => $this->fields["plugin_databases_scripttypes_id"]));
+                     ['name'  => "plugin_databases_scripttypes_id",
+                           'value' => $this->fields["plugin_databases_scripttypes_id"]]);
       echo "</td>";
 
       echo "</tr>";
@@ -243,7 +245,7 @@ class PluginDatabasesScript extends CommonDBChild {
 
       if ($canedit && $number) {
          Html::openMassiveActionsForm('mass' . __CLASS__ . $rand);
-         $massiveactionparams = array();
+         $massiveactionparams = [];
          Html::showMassiveActions(
             $massiveactionparams);
       }
@@ -283,7 +285,9 @@ class PluginDatabasesScript extends CommonDBChild {
             echo "<td class='center'>";
             echo "<a href='" . $CFG_GLPI["root_doc"] . "/plugins/databases/front/script.form.php?id=" . $data["id"] . "&amp;plugin_databases_databases_id=" . $data["plugin_databases_databases_id"] . "'>";
             echo $data["name"];
-            if ($_SESSION["glpiis_ids_visible"] || empty($data["name"])) echo " (" . $data["id"] . ")";
+            if ($_SESSION["glpiis_ids_visible"] || empty($data["name"])) {
+               echo " (" . $data["id"] . ")";
+            }
             echo "</a></td>";
 
             echo "<td class='center'>" . $data["type"] . "</td>";

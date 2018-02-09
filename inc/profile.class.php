@@ -9,7 +9,7 @@
  -------------------------------------------------------------------------
 
  LICENSE
-      
+
  This file is part of databases.
 
  databases is free software; you can redistribute it and/or modify
@@ -66,8 +66,8 @@ class PluginDatabasesProfile extends Profile {
          $prof = new self();
 
          self::addDefaultProfileInfos($ID,
-                                      array('plugin_databases'             => 0,
-                                            'plugin_databases_open_ticket' => 0));
+                                      ['plugin_databases'             => 0,
+                                            'plugin_databases_open_ticket' => 0]);
          $prof->showForm($ID);
       }
       return true;
@@ -79,8 +79,8 @@ class PluginDatabasesProfile extends Profile {
    static function createFirstAccess($ID) {
       //85
       self::addDefaultProfileInfos($ID,
-                                   array('plugin_databases'             => 127,
-                                         'plugin_databases_open_ticket' => 1), true);
+                                   ['plugin_databases'             => 127,
+                                         'plugin_databases_open_ticket' => 1], true);
    }
 
    /**
@@ -96,7 +96,7 @@ class PluginDatabasesProfile extends Profile {
       foreach ($rights as $right => $value) {
          if ($dbu->countElementsInTable('glpi_profilerights',
                                   "`profiles_id`='$profiles_id' AND `name`='$right'") && $drop_existing) {
-            $profileRight->deleteByCriteria(array('profiles_id' => $profiles_id, 'name' => $right));
+            $profileRight->deleteByCriteria(['profiles_id' => $profiles_id, 'name' => $right]);
          }
          if (!$dbu->countElementsInTable('glpi_profilerights',
                                    "`profiles_id`='$profiles_id' AND `name`='$right'")) {
@@ -123,10 +123,10 @@ class PluginDatabasesProfile extends Profile {
     * @internal param int $items_id id of the profile
     * @internal param value $target url of target
     */
-   function showForm($profiles_id = 0, $openform = TRUE, $closeform = TRUE) {
+   function showForm($profiles_id = 0, $openform = true, $closeform = true) {
 
       echo "<div class='firstbloc'>";
-      if (($canedit = Session::haveRightsOr(self::$rightname, array(CREATE, UPDATE, PURGE)))
+      if (($canedit = Session::haveRightsOr(self::$rightname, [CREATE, UPDATE, PURGE]))
           && $openform) {
          $profile = new Profile();
          echo "<form method='post' action='" . $profile->getFormURL() . "'>";
@@ -136,19 +136,19 @@ class PluginDatabasesProfile extends Profile {
       $profile->getFromDB($profiles_id);
       if ($profile->getField('interface') == 'central') {
          $rights = $this->getAllRights();
-         $profile->displayRightsChoiceMatrix($rights, array('canedit'       => $canedit,
+         $profile->displayRightsChoiceMatrix($rights, ['canedit'       => $canedit,
                                                             'default_class' => 'tab_bg_2',
-                                                            'title'         => __('General')));
+                                                            'title'         => __('General')]);
       }
       echo "<table class='tab_cadre_fixehov'>";
       echo "<tr class='tab_bg_1'><th colspan='4'>" . __('Helpdesk') . "</th></tr>\n";
 
-      $effective_rights = ProfileRight::getProfileRights($profiles_id, array('plugin_databases_open_ticket'));
+      $effective_rights = ProfileRight::getProfileRights($profiles_id, ['plugin_databases_open_ticket']);
       echo "<tr class='tab_bg_2'>";
       echo "<td width='20%'>" . __('Associable items to a ticket') . "</td>";
       echo "<td colspan='5'>";
-      Html::showCheckbox(array('name'    => '_plugin_databases_open_ticket',
-                               'checked' => $effective_rights['plugin_databases_open_ticket']));
+      Html::showCheckbox(['name'    => '_plugin_databases_open_ticket',
+                               'checked' => $effective_rights['plugin_databases_open_ticket']]);
       echo "</td></tr>\n";
       echo "</table>";
 
@@ -156,8 +156,8 @@ class PluginDatabasesProfile extends Profile {
           && $closeform
       ) {
          echo "<div class='center'>";
-         echo Html::hidden('id', array('value' => $profiles_id));
-         echo Html::submit(_sx('button', 'Save'), array('name' => 'update'));
+         echo Html::hidden('id', ['value' => $profiles_id]);
+         echo Html::submit(_sx('button', 'Save'), ['name' => 'update']);
          echo "</div>\n";
          Html::closeForm();
       }
@@ -170,17 +170,17 @@ class PluginDatabasesProfile extends Profile {
     * @return array
     */
    static function getAllRights($all = false) {
-      $rights = array(
-         array('itemtype' => 'PluginDatabasesDatabase',
+      $rights = [
+         ['itemtype' => 'PluginDatabasesDatabase',
                'label'    => _n('Database', 'Databases', 2, 'databases'),
                'field'    => 'plugin_databases'
-         ),
-      );
+         ],
+      ];
 
       if ($all) {
-         $rights[] = array('itemtype' => 'PluginDatabasesDatabase',
+         $rights[] = ['itemtype' => 'PluginDatabasesDatabase',
                            'label'    => __('Associable items to a ticket'),
-                           'field'    => 'plugin_databases_open_ticket');
+                           'field'    => 'plugin_databases_open_ticket'];
       }
 
       return $rights;
@@ -229,8 +229,8 @@ class PluginDatabasesProfile extends Profile {
       foreach ($DB->request('glpi_plugin_databases_profiles',
                             "`profiles_id`='$profiles_id'") as $profile_data) {
 
-         $matching       = array('databases'   => 'plugin_databases',
-                                 'open_ticket' => 'plugin_databases_open_ticket');
+         $matching       = ['databases'   => 'plugin_databases',
+                                 'open_ticket' => 'plugin_databases_open_ticket'];
          $current_rights = ProfileRight::getProfileRights($profiles_id, array_values($matching));
          foreach ($matching as $old => $new) {
             if (!isset($current_rights[$old])) {
@@ -254,7 +254,7 @@ class PluginDatabasesProfile extends Profile {
       foreach ($profile->getAllRights(true) as $data) {
          if ($dbu->countElementsInTable("glpi_profilerights",
                                   "`name` = '" . $data['field'] . "'") == 0) {
-            ProfileRight::addProfileRights(array($data['field']));
+            ProfileRight::addProfileRights([$data['field']]);
          }
       }
 

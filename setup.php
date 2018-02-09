@@ -9,7 +9,7 @@
  -------------------------------------------------------------------------
 
  LICENSE
-      
+
  This file is part of databases.
 
  databases is free software; you can redistribute it and/or modify
@@ -32,22 +32,22 @@ function plugin_init_databases() {
    global $PLUGIN_HOOKS;
 
    $PLUGIN_HOOKS['csrf_compliant']['databases']   = true;
-   $PLUGIN_HOOKS['change_profile']['databases']   = array('PluginDatabasesProfile', 'initProfile');
+   $PLUGIN_HOOKS['change_profile']['databases']   = ['PluginDatabasesProfile', 'initProfile'];
    $PLUGIN_HOOKS['assign_to_ticket']['databases'] = true;
 
    //$PLUGIN_HOOKS['assign_to_ticket_dropdown']['databases'] = true;
    //$PLUGIN_HOOKS['assign_to_ticket_itemtype']['databases'] = array('PluginDatabasesDatabase_Item');
 
-   Plugin::registerClass('PluginDatabasesDatabase', array(
+   Plugin::registerClass('PluginDatabasesDatabase', [
       'linkgroup_tech_types'   => true,
       'linkuser_tech_types'    => true,
       'document_types'         => true,
       'ticket_types'           => true,
       'helpdesk_visible_types' => true,
       'addtabon'               => 'Supplier'
-   ));
+   ]);
    Plugin::registerClass('PluginDatabasesProfile',
-                         array('addtabon' => 'Profile'));
+                         ['addtabon' => 'Profile']);
 
    //Plugin::registerClass('PluginDatabasesDatabase_Item',
    //                      array('ticket_types' => true));
@@ -63,7 +63,7 @@ function plugin_init_databases() {
           && Session::haveRight("plugin_databases", READ)
       ) {
 
-         $PLUGIN_HOOKS['menu_toadd']['databases'] = array('assets' => 'PluginDatabasesMenu');
+         $PLUGIN_HOOKS['menu_toadd']['databases'] = ['assets' => 'PluginDatabasesMenu'];
       }
 
       if (Session::haveRight("plugin_databases", UPDATE)) {
@@ -88,7 +88,7 @@ function plugin_init_databases() {
  */
 function plugin_version_databases() {
 
-   return array(
+   return [
       'name'           => _n('Database', 'Databases', 2, 'databases'),
       'version'        => '2.0.0',
       'author'         => "<a href='http://infotel.com/services/expertise-technique/glpi/'>Infotel</a>",
@@ -96,7 +96,7 @@ function plugin_version_databases() {
       'license'        => 'GPLv2+',
       'homepage'       => 'https://github.com/InfotelGLPI/databases',
       'minGlpiVersion' => '9.2',
-   );
+   ];
 
 }
 

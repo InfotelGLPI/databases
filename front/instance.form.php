@@ -9,7 +9,7 @@
  -------------------------------------------------------------------------
 
  LICENSE
-      
+
  This file is part of databases.
 
  databases is free software; you can redistribute it and/or modify
@@ -29,34 +29,43 @@
 
 include('../../../inc/includes.php');
 
-if (!isset($_GET["id"])) $_GET["id"] = "";
-if (!isset($_GET["withtemplate"])) $_GET["withtemplate"] = "";
-if (!isset($_GET["plugin_databases_databases_id"])) $_GET["plugin_databases_databases_id"] = "";
+if (!isset($_GET["id"])) {
+   $_GET["id"] = "";
+}
+if (!isset($_GET["withtemplate"])) {
+   $_GET["withtemplate"] = "";
+}
+if (!isset($_GET["plugin_databases_databases_id"])) {
+   $_GET["plugin_databases_databases_id"] = "";
+}
 
 $instance = new PluginDatabasesInstance();
 
 if (isset($_POST["add"])) {
 
-   if ($instance->canCreate())
+   if ($instance->canCreate()) {
       $instance->add($_POST);
+   }
    Html::back();
 
 } else if (isset($_POST["update"])) {
 
-   if ($instance->canCreate())
+   if ($instance->canCreate()) {
       $instance->update($_POST);
+   }
    Html::back();
 
 } else if (isset($_POST["delete"])) {
 
-   if ($instance->canCreate())
+   if ($instance->canCreate()) {
       $instance->delete($_POST, 1);
+   }
    Html::redirect(Toolbox::getItemTypeFormURL('PluginDatabasesDatabase') . "?id=" . $_POST["plugin_databases_databases_id"]);
 
 } else if (isset($_POST["delete_instance"])) {
    if ($instance->canCreate()) {
       foreach ($_POST["check"] as $ID => $value) {
-         $instance->delete(array("id" => $ID), 1);
+         $instance->delete(["id" => $ID], 1);
       }
    }
    Html::back();

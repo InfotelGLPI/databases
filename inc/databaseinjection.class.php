@@ -9,7 +9,7 @@
  -------------------------------------------------------------------------
 
  LICENSE
-      
+
  This file is part of databases.
 
  databases is free software; you can redistribute it and/or modify
@@ -41,8 +41,7 @@ class PluginDatabasesDatabaseInjection extends PluginDatabasesDatabase
    /**
     * @return mixed
     */
-   static function getTable()
-   {
+   static function getTable() {
 
       $parenttype = get_parent_class();
       return $parenttype::getTable();
@@ -52,25 +51,22 @@ class PluginDatabasesDatabaseInjection extends PluginDatabasesDatabase
    /**
     * @return bool
     */
-   function isPrimaryType()
-   {
+   function isPrimaryType() {
       return true;
    }
 
    /**
     * @return array
     */
-   function connectedTo()
-   {
-      return array();
+   function connectedTo() {
+      return [];
    }
 
    /**
     * @param string $primary_type
     * @return array
     */
-   function getOptions($primary_type = '')
-   {
+   function getOptions($primary_type = '') {
 
       $tab = Search::getOptions(get_parent_class($this));
 
@@ -79,13 +75,13 @@ class PluginDatabasesDatabaseInjection extends PluginDatabasesDatabase
 
       //$blacklist = PluginDatainjectionCommonInjectionLib::getBlacklistedOptions();
       //Remove some options because some fields cannot be imported
-      $notimportable = array(7, 30, 80);
+      $notimportable = [7, 30, 80];
       $options['ignore_fields'] = $notimportable;
-      $options['displaytype'] = array("dropdown" => array(2, 3, 4, 6, 10, 12),
-         "user" => array(11),
-         "multiline_text" => array(9),
-         "date" => array(14),
-         "bool" => array(8, 13));
+      $options['displaytype'] = ["dropdown" => [2, 3, 4, 6, 10, 12],
+         "user" => [11],
+         "multiline_text" => [9],
+         "date" => [14],
+         "bool" => [8, 13]];
 
       return PluginDatainjectionCommonInjectionLib::addToSearchOptions($tab, $options, $this);
 
@@ -100,8 +96,7 @@ class PluginDatabasesDatabaseInjection extends PluginDatabasesDatabase
     * @internal param fields $fields to add into glpi
     * @internal param options $options used during creation
     */
-   function deleteObject($values = array(), $options = array())
-   {
+   function deleteObject($values = [], $options = []) {
       $lib = new PluginDatainjectionCommonInjectionLib($this, $values, $options);
       $lib->deleteObject();
       return $lib->getInjectionResults();
@@ -116,8 +111,7 @@ class PluginDatabasesDatabaseInjection extends PluginDatabasesDatabase
     * @internal param fields $values to add into glpi
     * @internal param options $options used during creation
     */
-   function addOrUpdateObject($values = array(), $options = array())
-   {
+   function addOrUpdateObject($values = [], $options = []) {
       $lib = new PluginDatainjectionCommonInjectionLib($this, $values, $options);
       $lib->processAddOrUpdate();
       return $lib->getInjectionResults();

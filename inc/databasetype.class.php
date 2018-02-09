@@ -9,7 +9,7 @@
  -------------------------------------------------------------------------
 
  LICENSE
-      
+
  This file is part of databases.
 
  databases is free software; you can redistribute it and/or modify
@@ -45,8 +45,7 @@ class PluginDatabasesDatabaseType extends CommonDropdown
     * @param int $nb
     * @return translated
     */
-   static function getTypeName($nb = 0)
-   {
+   static function getTypeName($nb = 0) {
 
       return _n('Type', 'Types', $nb);
    }
@@ -56,8 +55,7 @@ class PluginDatabasesDatabaseType extends CommonDropdown
     * @param $entity
     * @return ID|int|the
     */
-   static function transfer($ID, $entity)
-   {
+   static function transfer($ID, $entity) {
       global $DB;
 
       if ($ID > 0) {
