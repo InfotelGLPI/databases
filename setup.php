@@ -105,7 +105,7 @@ function plugin_version_databases() {
  * @return bool
  */
 function plugin_databases_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '9.2', 'lt') || version_compare(GLPI_VERSION, '9.3', 'ge')) {
+   if (version_compare(GLPI_VERSION, '9.2', 'lt') || version_compare(GLPI_VERSION, '9.4', 'ge')) {
       echo __('This plugin requires GLPI >= 9.2');
       return false;
    }

@@ -34,14 +34,14 @@ if (!defined('GLPI_ROOT')) {
 /**
  * Class PluginDatabasesDatabaseCategory
  */
-class PluginDatabasesDatabaseCategory extends CommonDropdown
-{
+class PluginDatabasesDatabaseCategory extends CommonDropdown {
 
-   static $rightname = "dropdown";
-   var $can_be_translated = true;
+   static $rightname         = "dropdown";
+   var    $can_be_translated = true;
 
    /**
     * @param int $nb
+    *
     * @return translated
     */
    static function getTypeName($nb = 0) {

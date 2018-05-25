@@ -138,7 +138,7 @@ function plugin_databases_install() {
       Plugin::migrateItemType(
          [2400 => 'PluginDatabasesDatabase'],
          ["glpi_savedsearches", "glpi_savedsearches_users", "glpi_displaypreferences",
-               "glpi_documents_items", "glpi_infocoms", "glpi_logs", "glpi_items_tickets"],
+          "glpi_documents_items", "glpi_infocoms", "glpi_logs", "glpi_items_tickets"],
          ["glpi_plugin_databases_databases_items"]);
 
       Plugin::migrateItemType(
@@ -164,13 +164,13 @@ function plugin_databases_uninstall() {
    include_once(GLPI_ROOT . "/plugins/databases/inc/menu.class.php");
 
    $tables = ["glpi_plugin_databases_databases",
-                   "glpi_plugin_databases_databasetypes",
-                   "glpi_plugin_databases_databasecategories",
-                   "glpi_plugin_databases_servertypes",
-                   "glpi_plugin_databases_scripttypes",
-                   "glpi_plugin_databases_instances",
-                   "glpi_plugin_databases_scripts",
-                   "glpi_plugin_databases_databases_items"];
+              "glpi_plugin_databases_databasetypes",
+              "glpi_plugin_databases_databasecategories",
+              "glpi_plugin_databases_servertypes",
+              "glpi_plugin_databases_scripttypes",
+              "glpi_plugin_databases_instances",
+              "glpi_plugin_databases_scripts",
+              "glpi_plugin_databases_databases_items"];
 
    foreach ($tables as $table) {
       $DB->query("DROP TABLE IF EXISTS `$table`;");
@@ -178,27 +178,27 @@ function plugin_databases_uninstall() {
 
    //old versions
    $tables = ["glpi_plugin_sgbd",
-                   "glpi_dropdown_plugin_sgbd_type",
-                   "glpi_dropdown_plugin_sgbd_server_type",
-                   "glpi_plugin_sgbd_device",
-                   "glpi_plugin_sgbd_profiles",
-                   "glpi_dropdown_plugin_sgbd_script_type",
-                   "glpi_plugin_sgbd_instances",
-                   "glpi_plugin_sgbd_scripts",
-                   "glpi_dropdown_plugin_sgbd_category",
-                   "glpi_plugin_databases_profiles"];
+              "glpi_dropdown_plugin_sgbd_type",
+              "glpi_dropdown_plugin_sgbd_server_type",
+              "glpi_plugin_sgbd_device",
+              "glpi_plugin_sgbd_profiles",
+              "glpi_dropdown_plugin_sgbd_script_type",
+              "glpi_plugin_sgbd_instances",
+              "glpi_plugin_sgbd_scripts",
+              "glpi_dropdown_plugin_sgbd_category",
+              "glpi_plugin_databases_profiles"];
 
    foreach ($tables as $table) {
       $DB->query("DROP TABLE IF EXISTS `$table`;");
    }
 
    $tables_glpi = ["glpi_displaypreferences",
-                        "glpi_documents_items",
-                        "glpi_savedsearches",
-                        "glpi_logs",
-                        "glpi_items_tickets",
-                        "glpi_notepads",
-                        "glpi_dropdowntranslations"];
+                   "glpi_documents_items",
+                   "glpi_savedsearches",
+                   "glpi_logs",
+                   "glpi_items_tickets",
+                   "glpi_notepads",
+                   "glpi_dropdowntranslations"];
 
    foreach ($tables_glpi as $table_glpi) {
       $DB->query("DELETE FROM `$table_glpi` WHERE `itemtype` LIKE 'PluginDatabases%' ;");
@@ -376,28 +376,28 @@ function plugin_databases_getDatabaseRelations() {
          "glpi_plugin_databases_databasecategories" => "entities_id",
          "glpi_plugin_databases_instances"          => "entities_id",
          "glpi_plugin_databases_scripts"            => "entities_id"],
-                   "glpi_plugin_databases_databasecategories" => [
-                      "glpi_plugin_databases_databases" => "plugin_databases_databasecategories_id"],
-                   "glpi_plugin_databases_databasetypes"      => [
-                      "glpi_plugin_databases_databases" => "plugin_databases_databasetypes_id"],
-                   "glpi_users"                               => [
-                      "glpi_plugin_databases_databases" => "users_id_tech"],
-                   "glpi_groups"                              => [
-                      "glpi_plugin_databases_databases" => "groups_id_tech"],
-                   "glpi_plugin_databases_servertypes"        => [
-                      "glpi_plugin_databases_databases" => "plugin_databases_servertypes_id"],
-                   "glpi_suppliers"                           => [
-                      "glpi_plugin_databases_databases" => "suppliers_id"],
-                   "glpi_manufacturers"                       => [
-                      "glpi_plugin_databases_databases" => "manufacturers_id"],
-                   "glpi_locations"                           => [
-                      "glpi_plugin_databases_databases" => "locations_id"],
-                   "glpi_plugin_databases_databases"          => [
-                      "glpi_plugin_databases_instances"       => "plugin_databases_databases_id",
-                      "glpi_plugin_databases_scripts"         => "plugin_databases_databases_id",
-                      "glpi_plugin_databases_databases_items" => "plugin_databases_databases_id"],
-                   "glpi_plugin_databases_scripttypes"        => [
-                      "glpi_plugin_databases_scripts" => "plugin_databases_scripttypes_id"],
+              "glpi_plugin_databases_databasecategories" => [
+                 "glpi_plugin_databases_databases" => "plugin_databases_databasecategories_id"],
+              "glpi_plugin_databases_databasetypes"      => [
+                 "glpi_plugin_databases_databases" => "plugin_databases_databasetypes_id"],
+              "glpi_users"                               => [
+                 "glpi_plugin_databases_databases" => "users_id_tech"],
+              "glpi_groups"                              => [
+                 "glpi_plugin_databases_databases" => "groups_id_tech"],
+              "glpi_plugin_databases_servertypes"        => [
+                 "glpi_plugin_databases_databases" => "plugin_databases_servertypes_id"],
+              "glpi_suppliers"                           => [
+                 "glpi_plugin_databases_databases" => "suppliers_id"],
+              "glpi_manufacturers"                       => [
+                 "glpi_plugin_databases_databases" => "manufacturers_id"],
+              "glpi_locations"                           => [
+                 "glpi_plugin_databases_databases" => "locations_id"],
+              "glpi_plugin_databases_databases"          => [
+                 "glpi_plugin_databases_instances"       => "plugin_databases_databases_id",
+                 "glpi_plugin_databases_scripts"         => "plugin_databases_databases_id",
+                 "glpi_plugin_databases_databases_items" => "plugin_databases_databases_id"],
+              "glpi_plugin_databases_scripttypes"        => [
+                 "glpi_plugin_databases_scripts" => "plugin_databases_scripttypes_id"],
       ];
    } else {
       return [];
@@ -413,9 +413,9 @@ function plugin_databases_getDropdown() {
    $plugin = new Plugin();
    if ($plugin->isActivated("databases")) {
       return ["PluginDatabasesDatabaseType"     => PluginDatabasesDatabaseType::getTypeName(2),
-                   "PluginDatabasesDatabaseCategory" => PluginDatabasesDatabaseCategory::getTypeName(2),
-                   "PluginDatabasesServerType"       => PluginDatabasesServerType::getTypeName(2),
-                   "PluginDatabasesScriptType"       => PluginDatabasesScriptType::getTypeName(2)];
+              "PluginDatabasesDatabaseCategory" => PluginDatabasesDatabaseCategory::getTypeName(2),
+              "PluginDatabasesServerType"       => PluginDatabasesServerType::getTypeName(2),
+              "PluginDatabasesScriptType"       => PluginDatabasesScriptType::getTypeName(2)];
    } else {
       return [];
    }
@@ -443,8 +443,8 @@ function plugin_databases_getAddSearchOptions($itemtype) {
          $sopt[2410]['massiveaction'] = false;
          $sopt[2410]['itemlink_type'] = 'PluginDatabasesDatabase';
          $sopt[2410]['joinparams']    = ['beforejoin'
-                                              => ['table'      => 'glpi_plugin_databases_databases_items',
-                                                       'joinparams' => ['jointype' => 'itemtype_item']]];
+                                         => ['table'      => 'glpi_plugin_databases_databases_items',
+                                             'joinparams' => ['jointype' => 'itemtype_item']]];
 
          $sopt[2411]['table']         = 'glpi_plugin_databases_databasecategories';
          $sopt[2411]['field']         = 'name';
@@ -452,7 +452,7 @@ function plugin_databases_getAddSearchOptions($itemtype) {
          $sopt[2411]['forcegroupby']  = true;
          $sopt[2411]['joinparams']    = ['beforejoin' => [
             ['table'      => 'glpi_plugin_databases_databases',
-                  'joinparams' => $sopt[2410]['joinparams']]]];
+             'joinparams' => $sopt[2410]['joinparams']]]];
          $sopt[2411]['datatype']      = 'dropdown';
          $sopt[2411]['massiveaction'] = false;
 
@@ -462,7 +462,7 @@ function plugin_databases_getAddSearchOptions($itemtype) {
          $sopt[2412]['forcegroupby']  = true;
          $sopt[2412]['joinparams']    = ['beforejoin' => [
             ['table'      => 'glpi_plugin_databases_databases',
-                  'joinparams' => $sopt[2410]['joinparams']]]];
+             'joinparams' => $sopt[2410]['joinparams']]]];
          $sopt[2412]['datatype']      = 'dropdown';
          $sopt[2412]['massiveaction'] = false;
 
@@ -472,7 +472,7 @@ function plugin_databases_getAddSearchOptions($itemtype) {
          $sopt[2413]['forcegroupby']  = true;
          $sopt[2413]['joinparams']    = ['beforejoin' => [
             ['table'      => 'glpi_plugin_databases_databases',
-                  'joinparams' => $sopt[2410]['joinparams']]]];
+             'joinparams' => $sopt[2410]['joinparams']]]];
          $sopt[2413]['datatype']      = 'dropdown';
          $sopt[2413]['massiveaction'] = false;
       }
@@ -596,7 +596,7 @@ function plugin_databases_MassiveActions($type) {
 
    if (in_array($type, PluginDatabasesDatabase::getTypes(true))) {
       return ['PluginDatabasesDatabase' . MassiveAction::CLASS_ACTION_SEPARATOR . 'plugin_databases__add_item' =>
-                      __('Associate to the database', 'databases')];
+                 __('Associate to the database', 'databases')];
    }
    return [];
 }

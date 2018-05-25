@@ -35,8 +35,7 @@ if (!defined('GLPI_ROOT')) {
  * Class PluginDatabasesDatabaseInjection
  */
 class PluginDatabasesDatabaseInjection extends PluginDatabasesDatabase
-   implements PluginDatainjectionInjectionInterface
-{
+   implements PluginDatainjectionInjectionInterface {
 
    /**
     * @return mixed
@@ -64,6 +63,7 @@ class PluginDatabasesDatabaseInjection extends PluginDatabasesDatabase
 
    /**
     * @param string $primary_type
+    *
     * @return array
     */
    function getOptions($primary_type = '') {
@@ -75,13 +75,13 @@ class PluginDatabasesDatabaseInjection extends PluginDatabasesDatabase
 
       //$blacklist = PluginDatainjectionCommonInjectionLib::getBlacklistedOptions();
       //Remove some options because some fields cannot be imported
-      $notimportable = [7, 30, 80];
+      $notimportable            = [7, 30, 80];
       $options['ignore_fields'] = $notimportable;
-      $options['displaytype'] = ["dropdown" => [2, 3, 4, 6, 10, 12],
-         "user" => [11],
-         "multiline_text" => [9],
-         "date" => [14],
-         "bool" => [8, 13]];
+      $options['displaytype']   = ["dropdown"       => [2, 3, 4, 6, 10, 12],
+                                   "user"           => [11],
+                                   "multiline_text" => [9],
+                                   "date"           => [14],
+                                   "bool"           => [8, 13]];
 
       return PluginDatainjectionCommonInjectionLib::addToSearchOptions($tab, $options, $this);
 
@@ -90,8 +90,10 @@ class PluginDatabasesDatabaseInjection extends PluginDatabasesDatabase
    /**
     * Standard method to delete an object into glpi
     * WILL BE INTEGRATED INTO THE CORE IN 0.80
-    * @param array $values
+    *
+    * @param array         $values
     * @param array|options $options
+    *
     * @return an
     * @internal param fields $fields to add into glpi
     * @internal param options $options used during creation
@@ -105,8 +107,10 @@ class PluginDatabasesDatabaseInjection extends PluginDatabasesDatabase
    /**
     * Standard method to add an object into glpi
     * WILL BE INTEGRATED INTO THE CORE IN 0.80
-    * @param array|fields $values
+    *
+    * @param array|fields  $values
     * @param array|options $options
+    *
     * @return an array of IDs of newly created objects : for example array(Computer=>1, Networkport=>10)
     * @internal param fields $values to add into glpi
     * @internal param options $options used during creation

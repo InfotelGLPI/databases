@@ -77,10 +77,10 @@ if (isset($_POST["add"])) {
    $plugin = new Plugin();
    if ($plugin->isActivated("environment")) {
       Html::header(PluginDatabasesDatabase::getTypeName(2),
-         '', "assets", "pluginenvironmentdisplay", "databases");
+                   '', "assets", "pluginenvironmentdisplay", "databases");
    } else {
       Html::header(PluginDatabasesDatabase::getTypeName(2), '', "assets",
-         "plugindatabasesmenu");
+                   "plugindatabasesmenu");
    }
    $instance->display($_GET);
 

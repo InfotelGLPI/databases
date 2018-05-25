@@ -32,17 +32,18 @@ if (!defined('GLPI_ROOT')) {
 }
 
 // Class for a Dropdown
+
 /**
  * Class PluginDatabasesDatabaseType
  */
-class PluginDatabasesDatabaseType extends CommonDropdown
-{
+class PluginDatabasesDatabaseType extends CommonDropdown {
 
-   static $rightname = "dropdown";
-   var $can_be_translated = true;
+   static $rightname         = "dropdown";
+   var    $can_be_translated = true;
 
    /**
     * @param int $nb
+    *
     * @return translated
     */
    static function getTypeName($nb = 0) {
@@ -53,6 +54,7 @@ class PluginDatabasesDatabaseType extends CommonDropdown
    /**
     * @param $ID
     * @param $entity
+    *
     * @return ID|int|the
     */
    static function transfer($ID, $entity) {
@@ -67,12 +69,12 @@ class PluginDatabasesDatabaseType extends CommonDropdown
 
          if ($result = $DB->query($query)) {
             if ($DB->numrows($result)) {
-               $data = $DB->fetch_assoc($result);
-               $data = Toolbox::addslashes_deep($data);
-               $input['name'] = $data['name'];
+               $data                 = $DB->fetch_assoc($result);
+               $data                 = Toolbox::addslashes_deep($data);
+               $input['name']        = $data['name'];
                $input['entities_id'] = $entity;
-               $temp = new self();
-               $newID = $temp->getID();
+               $temp                 = new self();
+               $newID                = $temp->getID();
 
                if ($newID < 0) {
                   $newID = $temp->import($input);

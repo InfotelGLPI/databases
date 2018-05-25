@@ -36,7 +36,7 @@ if (!isset($_GET["withtemplate"])) {
    $_GET["withtemplate"] = "";
 }
 
-$database = new PluginDatabasesDatabase();
+$database      = new PluginDatabasesDatabase();
 $database_item = new PluginDatabasesDatabase_Item();
 
 if (isset($_POST["add"])) {
@@ -105,10 +105,10 @@ if (isset($_POST["add"])) {
    $plugin = new Plugin();
    if ($plugin->isActivated("environment")) {
       Html::header(PluginDatabasesDatabase::getTypeName(2),
-         '', "assets", "pluginenvironmentdisplay", "databases");
+                   '', "assets", "pluginenvironmentdisplay", "databases");
    } else {
       Html::header(PluginDatabasesDatabase::getTypeName(2), '', "assets",
-         "plugindatabasesmenu");
+                   "plugindatabasesmenu");
    }
    $database->display($_GET);
 
