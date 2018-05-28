@@ -97,10 +97,8 @@ class PluginDatabasesDatabase extends CommonDBTM {
                                         "`suppliers_id` = '" . $item->getID() . "'");
    }
 
-   //clean if databases are deleted
-
    /**
-    *
+    * clean if databases are deleted
     */
    function cleanDBonPurge() {
 
@@ -111,7 +109,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
    /**
     * @return array
     */
-   function rowSearchOptions() {
+   function rawSearchOptions() {
 
       $tab = [];
 
@@ -126,8 +124,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
          'field'         => 'name',
          'name'          => __('Name'),
          'datatype'      => 'itemlink',
-         'itemlink_type' => $this->getType(),
-         'massiveaction' => false
+         'itemlink_type' => $this->getType()
       ];
 
       $tab[] = [
@@ -181,14 +178,6 @@ class PluginDatabasesDatabase extends CommonDBTM {
          'joinparams'    => [
             'jointype' => 'child'
          ]
-      ];
-
-      $tab[] = [
-         'id'       => '8',
-         'table'    => $this->getTable(),
-         'field'    => 'is_recursive',
-         'name'     => __('Child entities'),
-         'datatype' => 'bool'
       ];
 
       $tab[] = [
