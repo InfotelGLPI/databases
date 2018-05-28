@@ -68,7 +68,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
       $temp = new self();
       $temp->deleteByCriteria(
          ['itemtype' => $item->getType(),
-               'items_id' => $item->getField('id')]
+          'items_id' => $item->getField('id')]
       );
    }
 
@@ -196,8 +196,8 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
    function addItem($values) {
 
       $this->add(['plugin_databases_databases_id' => $values["plugin_databases_databases_id"],
-                       'items_id'                      => $values["items_id"],
-                       'itemtype'                      => $values["itemtype"]]);
+                  'items_id'                      => $values["items_id"],
+                  'itemtype'                      => $values["itemtype"]]);
 
    }
 
@@ -271,14 +271,14 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
          echo "<tr class='tab_bg_1'><td colspan='" . (3 + $colsup) . "' class='center'>";
          echo "<input type='hidden' name='plugin_databases_databases_id' value='$instID'>";
          Dropdown::showSelectItemFromItemtypes(['items_id_name' => 'items_id',
-                                                     'itemtypes'     => PluginDatabasesDatabase::getTypes(true),
-                                                     'entity_restrict'
-                                                                     => ($database->fields['is_recursive']
-                                                        ? getSonsOf('glpi_entities',
-                                                                    $database->fields['entities_id'])
-                                                                     : $database->fields['entities_id']),
-                                                     'checkright'
-                                                                     => true,
+                                                'itemtypes'     => PluginDatabasesDatabase::getTypes(true),
+                                                'entity_restrict'
+                                                                => ($database->fields['is_recursive']
+                                                   ? getSonsOf('glpi_entities',
+                                                               $database->fields['entities_id'])
+                                                   : $database->fields['entities_id']),
+                                                'checkright'
+                                                                => true,
                                                ]);
          echo "</td>";
          echo "<td colspan='2' class='tab_bg_2'>";
@@ -501,7 +501,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
             }
 
             PluginDatabasesDatabase::dropdownDatabase(['entity' => $entities,
-                                                            'used'   => $used]);
+                                                       'used'   => $used]);
 
             echo "</td><td class='center' width='20%'>";
             echo "<input type='submit' name='additem' value=\"" .

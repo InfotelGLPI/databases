@@ -31,8 +31,7 @@
 /**
  * Class PluginDatabasesMenu
  */
-class PluginDatabasesMenu extends CommonGLPI
-{
+class PluginDatabasesMenu extends CommonGLPI {
    static $rightname = 'plugin_databases';
 
    /**
@@ -47,9 +46,9 @@ class PluginDatabasesMenu extends CommonGLPI
     */
    static function getMenuContent() {
 
-      $menu = [];
-      $menu['title'] = self::getMenuName();
-      $menu['page'] = "/plugins/databases/front/database.php";
+      $menu                    = [];
+      $menu['title']           = self::getMenuName();
+      $menu['page']            = "/plugins/databases/front/database.php";
       $menu['links']['search'] = PluginDatabasesDatabase::getSearchURL(false);
       if (PluginDatabasesDatabase::canCreate()) {
          $menu['links']['add'] = PluginDatabasesDatabase::getFormURL(false);

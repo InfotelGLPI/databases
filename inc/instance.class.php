@@ -96,7 +96,7 @@ class PluginDatabasesInstance extends CommonDBChild {
 
          $self->showInstances($item);
          $self->showForm("", ['plugin_databases_databases_id' => $item->getField('id'),
-                                   'target'                        => $CFG_GLPI['root_doc'] . "/plugins/databases/front/instance.form.php"]);
+                              'target'                        => $CFG_GLPI['root_doc'] . "/plugins/databases/front/instance.form.php"]);
       }
       return true;
    }
@@ -147,8 +147,8 @@ class PluginDatabasesInstance extends CommonDBChild {
          $database->getFromDB($plugin_databases_databases_id);
          // Create item
          $input = ['plugin_databases_databases_id' => $plugin_databases_databases_id,
-                        'entities_id'                   => $database->getEntityID(),
-                        'is_recursive'                  => $database->isRecursive()];
+                   'entities_id'                   => $database->getEntityID(),
+                   'is_recursive'                  => $database->isRecursive()];
          $this->check(-1, UPDATE, $input);
       }
 

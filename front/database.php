@@ -29,6 +29,7 @@
 
 include('../../../inc/includes.php');
 
+
 $plugin = new Plugin();
 if ($plugin->isActivated("environment")) {
    Html::header(PluginDatabasesDatabase::getTypeName(2), '', "assets", "pluginenvironmentdisplay", "databases");

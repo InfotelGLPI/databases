@@ -96,7 +96,7 @@ class PluginDatabasesScript extends CommonDBChild {
 
          $self->showScripts($item);
          $self->showForm("", ['plugin_databases_databases_id' => $item->getField('id'),
-                                   'target'                        => $CFG_GLPI['root_doc'] . "/plugins/databases/front/script.form.php"]);
+                              'target'                        => $CFG_GLPI['root_doc'] . "/plugins/databases/front/script.form.php"]);
       }
       return true;
    }
@@ -140,8 +140,8 @@ class PluginDatabasesScript extends CommonDBChild {
          $database->getFromDB($plugin_databases_databases_id);
          // Create item
          $input = ['plugin_databases_databases_id' => $plugin_databases_databases_id,
-                        'entities_id'                   => $database->getEntityID(),
-                        'is_recursive'                  => $database->isRecursive()];
+                   'entities_id'                   => $database->getEntityID(),
+                   'is_recursive'                  => $database->isRecursive()];
          $this->check(-1, UPDATE, $input);
       }
 
@@ -162,7 +162,7 @@ class PluginDatabasesScript extends CommonDBChild {
       echo "<td>";
       Dropdown::show('PluginDatabasesScriptType',
                      ['name'  => "plugin_databases_scripttypes_id",
-                           'value' => $this->fields["plugin_databases_scripttypes_id"]]);
+                      'value' => $this->fields["plugin_databases_scripttypes_id"]]);
       echo "</td>";
 
       echo "</tr>";
@@ -225,18 +225,18 @@ class PluginDatabasesScript extends CommonDBChild {
       $rand    = mt_rand();
       $canedit = $database->can($instID, UPDATE);
 
-      $query = "SELECT `glpi_plugin_databases_scripts`.`name` AS name,
+      $query  = "SELECT `glpi_plugin_databases_scripts`.`name` AS name,
                         `glpi_plugin_databases_scripts`.`id`,
                         `glpi_plugin_databases_scripts`.`plugin_databases_databases_id`,
                         `glpi_plugin_databases_scripts`.`path`,
                         `glpi_plugin_databases_scripts`.`comment`,
                         `glpi_plugin_databases_scripttypes`.`name` AS type
                FROM `glpi_plugin_databases_scripts` ";
-      $query .= " LEFT JOIN `glpi_plugin_databases_scripttypes`
+      $query  .= " LEFT JOIN `glpi_plugin_databases_scripttypes`
       ON (`glpi_plugin_databases_scripttypes`.`id` = `glpi_plugin_databases_scripts`.`plugin_databases_scripttypes_id`)";
-      $query .= " LEFT JOIN `glpi_plugin_databases_databases`
+      $query  .= " LEFT JOIN `glpi_plugin_databases_databases`
       ON (`glpi_plugin_databases_databases`.`id` = `glpi_plugin_databases_scripts`.`plugin_databases_databases_id`)";
-      $query .= " WHERE `glpi_plugin_databases_scripts`.`plugin_databases_databases_id` = '$instID'
+      $query  .= " WHERE `glpi_plugin_databases_scripts`.`plugin_databases_databases_id` = '$instID'
           ORDER BY `glpi_plugin_databases_scripts`.`name`";
       $result = $DB->query($query);
       $number = $DB->numrows($result);
