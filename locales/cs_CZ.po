@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Databases Development Team
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the GLPI - Databases plugin package.
 # 
 # Translators:
 # Ondrej Krejcik <ondra@tachec.org>, 2013
@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Project - databases plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-10 09:52+0200\n"
+"POT-Creation-Date: 2018-07-03 07:49+0200\n"
 "PO-Revision-Date: 2018-06-07 13:24+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech (Czech Republic) (http://www.transifex.com/tsmr/GLPI_databases/language/cs_CZ/)\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: hook.php:593
+#: hook.php:599
 msgid "Associate to the database"
 msgstr "Přiřadit k databázi"
 
-#: setup.php:92 inc/database.class.php:52 inc/menu.class.php:43
+#: setup.php:92 inc/database.class.php:52 inc/menu.class.php:41
 #: inc/profile.class.php:175
 msgid "Database"
 msgid_plural "Databases"
@@ -32,7 +32,7 @@ msgstr[1] "Databáze"
 msgstr[2] "Databází"
 msgstr[3] "Databáze"
 
-#: inc/databasecategory.class.php:50
+#: inc/databasecategory.class.php:49
 msgid "Category"
 msgid_plural "Categories"
 msgstr[0] "Kategorie"
@@ -40,12 +40,12 @@ msgstr[1] "Kategorie"
 msgstr[2] "Kategorií"
 msgstr[3] "Kategorie"
 
-#: inc/database.class.php:147 inc/database.class.php:321
-#: inc/database_item.class.php:533
+#: inc/database.class.php:166 inc/database.class.php:377
+#: inc/database_item.class.php:537
 msgid "Editor"
 msgstr "Editor"
 
-#: inc/database.class.php:521
+#: inc/database.class.php:578
 msgid "Database associated"
 msgid_plural "Databases associated"
 msgstr[0] "Přiřazená databáze"
@@ -53,7 +53,7 @@ msgstr[1] "Přiřazené databáze"
 msgstr[2] "Přiřazených databází"
 msgstr[3] "Přiřazené databáze"
 
-#: inc/database_item.class.php:504
+#: inc/database_item.class.php:508
 msgctxt "button"
 msgid "Associate a database"
 msgstr "Přiřadit databázi"
@@ -66,8 +66,8 @@ msgstr[1] "Instance"
 msgstr[2] "Instancí"
 msgstr[3] "Instance"
 
-#: inc/instance.class.php:175 inc/instance.class.php:264
-#: inc/script.class.php:170 inc/script.class.php:261
+#: inc/instance.class.php:177 inc/instance.class.php:266
+#: inc/script.class.php:172 inc/script.class.php:263
 msgid "Path"
 msgstr "Popis umístění"
 
@@ -79,7 +79,7 @@ msgstr[1] "Skripty"
 msgstr[2] "Skriptů"
 msgstr[3] "Skripty"
 
-#: inc/scripttype.class.php:50
+#: inc/scripttype.class.php:49
 msgid "Type of script"
 msgid_plural "Types of script"
 msgstr[0] "Typ skriptu"
@@ -87,7 +87,7 @@ msgstr[1] "Typy skriptů"
 msgstr[2] "Typů skriptů"
 msgstr[3] "Typy skriptů"
 
-#: inc/servertype.class.php:49
+#: inc/servertype.class.php:48
 msgid "Engine"
 msgid_plural "Engines"
 msgstr[0] "Engine"

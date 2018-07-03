@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Databases Development Team
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the GLPI - Databases plugin package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI - Databases plugin 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-10 09:52+0200\n"
+"POT-Creation-Date: 2018-07-03 07:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,35 +18,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: hook.php:593
+#: hook.php:599
 msgid "Associate to the database"
 msgstr ""
 
-#: setup.php:92 inc/database.class.php:52 inc/menu.class.php:43
+#: setup.php:92 inc/database.class.php:52 inc/menu.class.php:41
 #: inc/profile.class.php:175
 msgid "Database"
 msgid_plural "Databases"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/databasecategory.class.php:50
+#: inc/databasecategory.class.php:49
 msgid "Category"
 msgid_plural "Categories"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/database.class.php:147 inc/database.class.php:321
-#: inc/database_item.class.php:533
+#: inc/database.class.php:166 inc/database.class.php:377
+#: inc/database_item.class.php:537
 msgid "Editor"
 msgstr ""
 
-#: inc/database.class.php:521
+#: inc/database.class.php:578
 msgid "Database associated"
 msgid_plural "Databases associated"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/database_item.class.php:504
+#: inc/database_item.class.php:508
 msgctxt "button"
 msgid "Associate a database"
 msgstr ""
@@ -57,8 +57,8 @@ msgid_plural "Instances"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/instance.class.php:175 inc/instance.class.php:264
-#: inc/script.class.php:170 inc/script.class.php:261
+#: inc/instance.class.php:177 inc/instance.class.php:266
+#: inc/script.class.php:172 inc/script.class.php:263
 msgid "Path"
 msgstr ""
 
@@ -68,13 +68,13 @@ msgid_plural "Scripts"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/scripttype.class.php:50
+#: inc/scripttype.class.php:49
 msgid "Type of script"
 msgid_plural "Types of script"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/servertype.class.php:49
+#: inc/servertype.class.php:48
 msgid "Engine"
 msgid_plural "Engines"
 msgstr[0] ""

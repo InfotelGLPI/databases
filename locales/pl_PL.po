@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Databases Development Team
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the GLPI - Databases plugin package.
 # 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Project - databases plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-10 09:52+0200\n"
+"POT-Creation-Date: 2018-07-03 07:49+0200\n"
 "PO-Revision-Date: 2017-10-10 11:16+0000\n"
 "Last-Translator: Amandine Manceau\n"
 "Language-Team: Polish (Poland) (http://www.transifex.com/tsmr/GLPI_databases/language/pl_PL/)\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Language: pl_PL\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: hook.php:593
+#: hook.php:599
 msgid "Associate to the database"
 msgstr "Połączenie z bazą danych"
 
-#: setup.php:92 inc/database.class.php:52 inc/menu.class.php:43
+#: setup.php:92 inc/database.class.php:52 inc/menu.class.php:41
 #: inc/profile.class.php:175
 msgid "Database"
 msgid_plural "Databases"
@@ -30,7 +30,7 @@ msgstr[1] "Bazy danych"
 msgstr[2] "Baz danych"
 msgstr[3] "Baz danych"
 
-#: inc/databasecategory.class.php:50
+#: inc/databasecategory.class.php:49
 msgid "Category"
 msgid_plural "Categories"
 msgstr[0] "Kategoria"
@@ -38,12 +38,12 @@ msgstr[1] "Kategorie"
 msgstr[2] "Kategorii"
 msgstr[3] "Kategorii"
 
-#: inc/database.class.php:147 inc/database.class.php:321
-#: inc/database_item.class.php:533
+#: inc/database.class.php:166 inc/database.class.php:377
+#: inc/database_item.class.php:537
 msgid "Editor"
 msgstr "Producent"
 
-#: inc/database.class.php:521
+#: inc/database.class.php:578
 msgid "Database associated"
 msgid_plural "Databases associated"
 msgstr[0] "Połączona baza danych"
@@ -51,7 +51,7 @@ msgstr[1] "Połoączone bazy danych"
 msgstr[2] "Połączonych baz danych"
 msgstr[3] "Połączonych baz danych"
 
-#: inc/database_item.class.php:504
+#: inc/database_item.class.php:508
 msgctxt "button"
 msgid "Associate a database"
 msgstr "Dołącz bazę danych"
@@ -64,8 +64,8 @@ msgstr[1] "Egzemplarze"
 msgstr[2] "Egzemplarzy"
 msgstr[3] "Egzemplarzy"
 
-#: inc/instance.class.php:175 inc/instance.class.php:264
-#: inc/script.class.php:170 inc/script.class.php:261
+#: inc/instance.class.php:177 inc/instance.class.php:266
+#: inc/script.class.php:172 inc/script.class.php:263
 msgid "Path"
 msgstr "Ścieżka"
 
@@ -77,7 +77,7 @@ msgstr[1] "Skrypty"
 msgstr[2] "Skryptów"
 msgstr[3] "Skryptów"
 
-#: inc/scripttype.class.php:50
+#: inc/scripttype.class.php:49
 msgid "Type of script"
 msgid_plural "Types of script"
 msgstr[0] "Rodzaj skryptu"
@@ -85,7 +85,7 @@ msgstr[1] "Rodzaje skryptów"
 msgstr[2] "Rodzaji skryptów"
 msgstr[3] "Rodzaji skryptów"
 
-#: inc/servertype.class.php:49
+#: inc/servertype.class.php:48
 msgid "Engine"
 msgid_plural "Engines"
 msgstr[0] "Silnik"
