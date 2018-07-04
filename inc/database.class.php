@@ -150,6 +150,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
          'name'     => __('Location'),
          'datatype' => 'dropdown'
       ];
+      $tab = array_merge($tab, Location::rawSearchOptionsToAdd());
 
       $tab[] = [
          'id'       => '5',
