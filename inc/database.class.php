@@ -136,20 +136,13 @@ class PluginDatabasesDatabase extends CommonDBTM {
       ];
 
       $tab[] = [
-         'id'       => '3',
+         'id'       => '4',
          'table'    => 'glpi_plugin_databases_servertypes',
          'field'    => 'name',
          'name'     => PluginDatabasesServerType::getTypeName(1),
          'datatype' => 'dropdown'
       ];
 
-      $tab[] = [
-         'id'       => '4',
-         'table'    => 'glpi_locations',
-         'field'    => 'completename',
-         'name'     => __('Location'),
-         'datatype' => 'dropdown'
-      ];
       $tab = array_merge($tab, Location::rawSearchOptionsToAdd());
 
       $tab[] = [
