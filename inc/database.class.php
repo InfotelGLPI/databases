@@ -445,9 +445,9 @@ class PluginDatabasesDatabase extends CommonDBTM {
             $p[$key] = $val;
          }
       }
-
+      $dbu = new DbUtils();
       $where = " WHERE `glpi_plugin_databases_databases`.`is_deleted` = '0' " .
-               getEntitiesRestrictRequest("AND", "glpi_plugin_databases_databases", '', $p['entity'], true);
+               $dbu->getEntitiesRestrictRequest("AND", "glpi_plugin_databases_databases", '', $p['entity'], true);
 
       $p['used'] = array_filter($p['used']);
       if (count($p['used'])) {
@@ -548,12 +548,13 @@ class PluginDatabasesDatabase extends CommonDBTM {
 
       $item    = new Supplier();
       $canread = $item->can($ID, READ);
+      $dbu     = new DbUtils();
 
       $query = "SELECT `glpi_plugin_databases_databases`.* "
                . "FROM `glpi_plugin_databases_databases` "
                . " LEFT JOIN `glpi_entities` ON (`glpi_entities`.`id` = `glpi_plugin_databases_databases`.`entities_id`) "
                . " WHERE `suppliers_id` = '$ID' "
-               . getEntitiesRestrictRequest(" AND ", "glpi_plugin_databases_databases", '', '', $this->maybeRecursive());
+               . $dbu->getEntitiesRestrictRequest(" AND ", "glpi_plugin_databases_databases", '', '', $this->maybeRecursive());
       $query .= " ORDER BY `glpi_plugin_databases_databases`.`name` ";
 
       $result = $DB->query($query);
@@ -616,7 +617,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
     *
     * @param null $checkitem
     *
-    * @return an
+    * @return array
     */
    function getSpecificMassiveActions($checkitem = null) {
       $isadmin = static::canUpdate();

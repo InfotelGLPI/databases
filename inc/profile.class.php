@@ -119,7 +119,7 @@ class PluginDatabasesProfile extends Profile {
     * @param bool $openform
     * @param bool $closeform
     *
-    * @return nothing
+    * @return void
     * @internal param int $items_id id of the profile
     * @internal param value $target url of target
     */

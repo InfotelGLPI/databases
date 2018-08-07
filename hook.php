@@ -506,6 +506,7 @@ function plugin_databases_giveItem($type, $ID, $data, $num) {
    $searchopt =& Search::getOptions($type);
    $table     = $searchopt[$ID]["table"];
    $field     = $searchopt[$ID]["field"];
+   $dbu       = new DbUtils();
 
    switch ($table . '.' . $field) {
       case "glpi_plugin_databases_databases_items.items_id" :
@@ -528,7 +529,7 @@ function plugin_databases_giveItem($type, $ID, $data, $num) {
                }
                $item = new $itemtype();
                if ($item->canView()) {
-                  $table_item = getTableForItemType($itemtype);
+                  $table_item = $dbu->getTableForItemType($itemtype);
 
                   $query = "SELECT `" . $table_item . "`.*, `glpi_plugin_databases_databases_items`.`id` AS items_id, `glpi_entities`.`id` AS entity "
                            . " FROM `glpi_plugin_databases_databases_items`, `" . $table_item
@@ -536,7 +537,7 @@ function plugin_databases_giveItem($type, $ID, $data, $num) {
                            . " WHERE `" . $table_item . "`.`id` = `glpi_plugin_databases_databases_items`.`items_id`
                   AND `glpi_plugin_databases_databases_items`.`itemtype` = '$itemtype'
                   AND `glpi_plugin_databases_databases_items`.`plugin_databases_databases_id` = '" . $databases . "' "
-                           . getEntitiesRestrictRequest(" AND ", $table_item, '', '', $item->maybeRecursive());
+                           . $dbu->getEntitiesRestrictRequest(" AND ", $table_item, '', '', $item->maybeRecursive());
 
                   if ($item->maybeTemplate()) {
                      $query .= " AND `" . $table_item . "`.`is_template` = '0'";
@@ -565,7 +566,6 @@ function plugin_databases_giveItem($type, $ID, $data, $num) {
 
       case 'glpi_plugin_databases_databases.name':
          if ($type == 'Ticket') {
-            $databases_id = [];
             if ($data['raw']["ITEM_$num"] != '') {
                $databases_id = explode('$$$$', $data['raw']["ITEM_$num"]);
             } else {

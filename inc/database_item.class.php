@@ -61,7 +61,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
     *
     * @param CommonDBTM|Object $item Object to use
     *
-    * @return nothing
+    * @return void
     */
    public static function cleanForItem(CommonDBTM $item) {
 
@@ -241,6 +241,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
       }
 
       $rand = mt_rand();
+      $dbu  = new DbUtils();
 
       $canedit = $database->can($instID, UPDATE);
 
@@ -274,7 +275,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
                                                 'itemtypes'     => PluginDatabasesDatabase::getTypes(true),
                                                 'entity_restrict'
                                                                 => ($database->fields['is_recursive']
-                                                   ? getSonsOf('glpi_entities',
+                                                   ? $dbu->getSonsOf('glpi_entities',
                                                                $database->fields['entities_id'])
                                                    : $database->fields['entities_id']),
                                                 'checkright'
@@ -314,13 +315,13 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
       for ($i = 0; $i < $number; $i++) {
          $itemType = $DB->result($result, $i, "itemtype");
 
-         if (!($item = getItemForItemtype($itemType))) {
+         if (!($item = $dbu->getItemForItemtype($itemType))) {
             continue;
          }
 
          if ($item->canView()) {
             $column    = "name";
-            $itemTable = getTableForItemType($itemType);
+            $itemTable = $dbu->getTableForItemType($itemType);
 
             $query = "SELECT `" . $itemTable . "`.*,
                              `glpi_plugin_databases_databases_items`.`id` AS items_id,
@@ -330,7 +331,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
                      . " WHERE `" . $itemTable . "`.`id` = `glpi_plugin_databases_databases_items`.`items_id`
                 AND `glpi_plugin_databases_databases_items`.`itemtype` = '$itemType'
                 AND `glpi_plugin_databases_databases_items`.`plugin_databases_databases_id` = '$instID' "
-                     . getEntitiesRestrictRequest(" AND ", $itemTable, '', '', $item->maybeRecursive());
+                     . $dbu->getEntitiesRestrictRequest(" AND ", $itemTable, '', '', $item->maybeRecursive());
 
             if ($item->maybeTemplate()) {
                $query .= " AND `" . $itemTable . "`.`is_template` = '0'";
@@ -426,6 +427,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
       $canedit      = $item->canAddItem('PluginDatabasesDatabase');
       $rand         = mt_rand();
       $is_recursive = $item->isRecursive();
+      $dbu          = new DbUtils();
 
       $query = "SELECT `glpi_plugin_databases_databases_items`.`id` AS assocID,
                        `glpi_entities`.`id` AS entity,
@@ -438,7 +440,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
                 WHERE `glpi_plugin_databases_databases_items`.`items_id` = '$ID'
                       AND `glpi_plugin_databases_databases_items`.`itemtype` = '" . $item->getType() . "' ";
 
-      $query .= getEntitiesRestrictRequest(" AND", "glpi_plugin_databases_databases", '', '', true);
+      $query .= $dbu->getEntitiesRestrictRequest(" AND", "glpi_plugin_databases_databases", '', '', true);
 
       $query .= " ORDER BY `assocName`";
 
@@ -468,12 +470,12 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
             }
 
             if ($item->isRecursive()) {
-               $entities = getSonsOf('glpi_entities', $entity);
+               $entities = $dbu->getSonsOf('glpi_entities', $entity);
             } else {
                $entities = $entity;
             }
          }
-         $limit = getEntitiesRestrictRequest(" AND ", "glpi_plugin_databases_databases", '', $entities, true);
+         $limit = $dbu->getEntitiesRestrictRequest(" AND ", "glpi_plugin_databases_databases", '', $entities, true);
          $q     = "SELECT COUNT(*)
                FROM `glpi_plugin_databases_databases`
                WHERE `is_deleted` = '0'

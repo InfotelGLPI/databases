@@ -38,6 +38,8 @@ class PluginDatabasesDatabaseInjection extends PluginDatabasesDatabase
    implements PluginDatainjectionInjectionInterface {
 
    /**
+    * @param null $classname
+    *
     * @return mixed
     */
    static function getTable($classname = null) {
