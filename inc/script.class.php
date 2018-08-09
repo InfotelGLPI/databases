@@ -78,7 +78,7 @@ class PluginDatabasesScript extends CommonDBChild {
    static function countForItem(CommonDBTM $item) {
       $dbu = new DbUtils();
       return $dbu->countElementsInTable('glpi_plugin_databases_scripts',
-                                        "`plugin_databases_databases_id` = '" . $item->getID() . "'");
+                                        ["plugin_databases_databases_id" => $item->getID()]);
    }
 
    /**
