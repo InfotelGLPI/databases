@@ -8,10 +8,12 @@
         <short>
             <fr><![CDATA[Gestion de bases de données. Ce plugin vous permet de gérer les bases de données de votre réseau et de les associer à des éléments de l’inventaire.<br />-Inventaire des instances<br />-Inventaire des scripts]]></fr>
             <en><![CDATA[Databases management. This plugin enables you to manage the databases of your network and associate them with elements of the inventory.<br />-Instances inventory<br />-Scripts inventory]]></en>
+            <cs><![CDATA[Správa databází. Tento zásuvný modul umožňuje spravovat databáze na síti a přiřazovat je prvkům v inventáři.<br />-Inventář instancí<br />-Inventář skriptů]]></cs>
         </short>
         <long>
             <fr><![CDATA[Ce plugin vous permet de gérer les bases de données de votre réseau et de les associer à des éléments de l’inventaire.<br />- Inventaire des instances<br />- Inventaire des scripts.<br />- Utilisable depuis le helpdesk<br />- Peut être intégré au plugin environment.]]></fr>
             <en><![CDATA[This plugin enables you to manage the databases of your network and associate them with elements of the inventory.<br />- Instances inventory<br />- Scripts inventory.<br />- Can be used with helpdesk<br />-Can be integrated into Environment plugin.]]></en>
+            <cs><![CDATA[Tento zásuvný modul umožňuje spravovat databáze na síti a přiřazovat je prvkům v inventáři.<br />-Inventář instancí<br />-Inventář skriptů.<br />- Je možné použít se službou podpory<br />-Je možné začlenit do zásuvného modulu Prostředí.]]></cs>
         </long>
     </description>
     <homepage>https://github.com/InfotelGLPI/databases</homepage>
@@ -127,5 +129,10 @@
             <tag>Inventory</tag>
             <tag>Management</tag>
         </en>
+        <cs>
+            <tag>Databáze</tag>
+            <tag>Inventura</tag>
+            <tag>Správa</tag>
+        </cs>
     </tags>
 </root>
