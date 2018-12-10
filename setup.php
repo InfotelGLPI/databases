@@ -90,12 +90,12 @@ function plugin_version_databases() {
 
    return [
       'name'           => _n('Database', 'Databases', 2, 'databases'),
-      'version'        => '2.1.1',
+      'version'        => '2.2.0',
       'author'         => "<a href='http://infotel.com/services/expertise-technique/glpi/'>Infotel</a>",
       'oldname'        => 'sgbd',
       'license'        => 'GPLv2+',
       'homepage'       => 'https://github.com/InfotelGLPI/databases',
-      'minGlpiVersion' => '9.3',
+      'minGlpiVersion' => '9.4',
    ];
 
 }
@@ -105,8 +105,8 @@ function plugin_version_databases() {
  * @return bool
  */
 function plugin_databases_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '9.3', 'lt') || version_compare(GLPI_VERSION, '9.4', 'ge')) {
-      echo __('This plugin requires GLPI >= 9.3');
+   if (version_compare(GLPI_VERSION, '9.4', 'lt') || version_compare(GLPI_VERSION, '9.5', 'ge')) {
+      echo __('This plugin requires GLPI >= 9.4');
       return false;
    }
    return true;
