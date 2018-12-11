@@ -118,7 +118,8 @@ function plugin_databases_check_prerequisites() {
       }
       return false;
    }
-}   
+   return true;
+}
 
 // Uninstall process for plugin : need to return true if succeeded : may display messages or add to message after redirect
 /**
