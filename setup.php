@@ -27,6 +27,8 @@
  --------------------------------------------------------------------------
  */
 
+define('PLUGIN_DATABASES_VERSION', '2.3.0');
+
 // Init the hooks of the plugins -Needed
 function plugin_init_databases() {
    global $PLUGIN_HOOKS;
@@ -90,14 +92,18 @@ function plugin_version_databases() {
 
    return [
       'name'           => _n('Database', 'Databases', 2, 'databases'),
-      'version'        => '2.2.0',
+      'version'        => PLUGIN_DATABASES_VERSION,
       'author'         => "<a href='http://infotel.com/services/expertise-technique/glpi/'>Infotel</a>",
       'oldname'        => 'sgbd',
       'license'        => 'GPLv2+',
       'homepage'       => 'https://github.com/InfotelGLPI/databases',
-      'minGlpiVersion' => '9.4',
+      'requirements'   => [
+         'glpi' => [
+            'min' => '9.4',
+            'dev' => false
+         ]
+      ]
    ];
-
 }
 
 // Optional : check prerequisites before install : may print errors or add to message after redirect
@@ -105,12 +111,14 @@ function plugin_version_databases() {
  * @return bool
  */
 function plugin_databases_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '9.4', 'lt') || version_compare(GLPI_VERSION, '9.5', 'ge')) {
-      echo __('This plugin requires GLPI >= 9.4');
+   if (version_compare(GLPI_VERSION, '9.4', 'lt') 
+         || version_compare(GLPI_VERSION, '9.5', 'ge')) {
+      if (method_exists('Plugin', 'messageIncompatible')) {
+         echo Plugin::messageIncompatible('core', '9.4');
+      }
       return false;
    }
-   return true;
-}
+}   
 
 // Uninstall process for plugin : need to return true if succeeded : may display messages or add to message after redirect
 /**

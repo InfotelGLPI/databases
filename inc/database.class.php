@@ -366,7 +366,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
       Group::dropdown(['name'      => 'groups_id_tech',
                        'value'     => $this->fields['groups_id_tech'],
                        'entity'    => $this->fields['entities_id'],
-                       'condition' => '`is_assign`']);
+                       'condition' => ['is_assign' => 1]]);
       echo "</td>";
 
       echo "<td>" . __('Editor', 'databases') . "</td>";

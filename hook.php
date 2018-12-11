@@ -593,12 +593,12 @@ function plugin_databases_giveItem($type, $ID, $data, $num) {
  * @return array
  */
 function plugin_databases_MassiveActions($type) {
-   //include database - problem with install
-   include_once(GLPI_ROOT . "/plugins/databases/inc/database.class.php");
-
-   if (in_array($type, PluginDatabasesDatabase::getTypes(true))) {
-      return ['PluginDatabasesDatabase' . MassiveAction::CLASS_ACTION_SEPARATOR . 'plugin_databases__add_item' =>
-                 __('Associate to the database', 'databases')];
+   $plugin = new Plugin();
+   if ($plugin->isActivated('databases')) {
+      if (in_array($type, PluginDatabasesDatabase::getTypes(true))) {
+         return ['PluginDatabasesDatabase' . MassiveAction::CLASS_ACTION_SEPARATOR . 'plugin_databases__add_item' =>
+                    __('Associate to the database', 'databases')];
+      }
    }
    return [];
 }
