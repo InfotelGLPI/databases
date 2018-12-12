@@ -58,6 +58,6 @@ if (isset($_POST["databasetype"])) {
                    'width'     => '50%',
                    'entity'    => $_POST['entity'],
                    'rand'      => $_POST['rand'],
-                   'condition' => "glpi_plugin_databases_databases.plugin_databases_databasetypes_id='" . $_POST["databasetype"] . "'"]);
+                   'condition' => ["glpi_plugin_databases_databases.plugin_databases_databasetypes_id" => $_POST["databasetype"]]]);
 
 }
