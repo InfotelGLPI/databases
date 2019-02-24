@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Le Rohellec Benoit <blerohellec@hotmail.com>, 2015
-# Pruebas, 2018
+# Pruebas, 2018-2019
 # Xavier CAILLAUD <thetsmr@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: GLPI Project - databases plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-03 07:49+0200\n"
-"PO-Revision-Date: 2018-04-25 11:52+0000\n"
+"PO-Revision-Date: 2019-01-22 13:04+0000\n"
 "Last-Translator: Pruebas\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/tsmr/GLPI_databases/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: hook.php:599
 msgid "Associate to the database"
-msgstr "Asociar a una base de datos"
+msgstr "Asociar a la base de datos"
 
 #: setup.php:92 inc/database.class.php:52 inc/menu.class.php:41
 #: inc/profile.class.php:175
@@ -34,13 +34,13 @@ msgstr[1] "Bases de datos"
 #: inc/databasecategory.class.php:49
 msgid "Category"
 msgid_plural "Categories"
-msgstr[0] "Categoría de base de datos"
-msgstr[1] "Categorías de base de datos"
+msgstr[0] "Categoría"
+msgstr[1] "Categorías"
 
 #: inc/database.class.php:166 inc/database.class.php:377
 #: inc/database_item.class.php:537
 msgid "Editor"
-msgstr "Fabricante"
+msgstr "Editor"
 
 #: inc/database.class.php:578
 msgid "Database associated"
@@ -79,5 +79,5 @@ msgstr[1] "Tipos de script"
 #: inc/servertype.class.php:48
 msgid "Engine"
 msgid_plural "Engines"
-msgstr[0] "Sistema de base de datos"
-msgstr[1] "Sistemas de base de datos"
+msgstr[0] "Motor"
+msgstr[1] "Motores"

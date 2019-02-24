@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GLPI - Databases plugin 1.9.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 07:49+0200\n"
+"POT-Creation-Date: 2019-02-24 13:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: hook.php:599
+#: hook.php:600
 msgid "Associate to the database"
 msgstr ""
 
-#: setup.php:92 inc/database.class.php:52 inc/menu.class.php:41
+#: setup.php:94 inc/database.class.php:52 inc/menu.class.php:41
 #: inc/profile.class.php:175
 msgid "Database"
 msgid_plural "Databases"
@@ -35,18 +35,18 @@ msgid_plural "Categories"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/database.class.php:166 inc/database.class.php:377
-#: inc/database_item.class.php:537
+#: inc/database.class.php:160 inc/database.class.php:372
+#: inc/database_item.class.php:540
 msgid "Editor"
 msgstr ""
 
-#: inc/database.class.php:578
+#: inc/database.class.php:574
 msgid "Database associated"
 msgid_plural "Databases associated"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/database_item.class.php:508
+#: inc/database_item.class.php:511
 msgctxt "button"
 msgid "Associate a database"
 msgstr ""
