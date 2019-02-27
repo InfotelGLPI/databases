@@ -2,10 +2,10 @@
 Plugin databases pour GLPI
 
 Ce plugin est sur Transifex - Aidez-nous à le traduire :
-https://www.transifex.com/tsmr/GLPI_databases/
+https://www.transifex.com/infotelGLPI/GLPI_databases/
 
 This plugin is on Transifex - Help us to translate :
-https://www.transifex.com/tsmr/GLPI_databases/
+https://www.transifex.com/infotelGLPI/GLPI_databases/
 
 Ce plugin vous permet de gérer les bases de données de votre réseau et de les associer à des éléments de l'inventaire.
 > * Inventaire des instances
