@@ -27,7 +27,7 @@
  --------------------------------------------------------------------------
  */
 
-define('PLUGIN_DATABASES_VERSION', '2.2.0');
+define('PLUGIN_DATABASES_VERSION', '2.2.1');
 
 // Init the hooks of the plugins -Needed
 function plugin_init_databases() {
@@ -41,6 +41,7 @@ function plugin_init_databases() {
    //$PLUGIN_HOOKS['assign_to_ticket_itemtype']['databases'] = array('PluginDatabasesDatabase_Item');
 
    Plugin::registerClass('PluginDatabasesDatabase', [
+      'linkgroup_types'        => true,
       'linkgroup_tech_types'   => true,
       'linkuser_tech_types'    => true,
       'document_types'         => true,
