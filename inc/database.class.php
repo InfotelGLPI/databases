@@ -392,6 +392,19 @@ class PluginDatabasesDatabase extends CommonDBTM {
       echo "</td>";
 
       echo "</tr>";
+      echo "<tr class='tab_bg_1'>";
+
+      echo "<td>" . __('Link') . "</td>";
+      echo "<td>";
+      Html::autocompletionTextField($this, "link");
+      echo "&nbsp;<a target='_blank' href='".$this->getField("link")."'><i class=\"fas fa-link\"></i></a>";
+      echo "</td>";
+
+      echo "<td></td><td>";
+
+      echo "</td>";
+
+      echo "</tr>";
 
       echo "<tr class='tab_bg_1'>";
 

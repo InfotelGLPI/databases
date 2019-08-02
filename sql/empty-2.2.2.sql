@@ -13,6 +13,7 @@ CREATE TABLE `glpi_plugin_databases_databases` (
   `manufacturers_id`                       INT(11)    NOT NULL     DEFAULT '0' COMMENT 'RELATION to glpi_manufacturers (id)',
   `locations_id`                           INT(11)    NOT NULL     DEFAULT '0' COMMENT 'RELATION to glpi_locations (id)',
   `comment`                                TEXT COLLATE utf8_unicode_ci,
+  `link`                           VARCHAR(255) NOT NULL DEFAULT '',
   `is_helpdesk_visible`                    INT(11)    NOT NULL     DEFAULT '1',
   `date_mod`                               DATETIME                DEFAULT NULL,
   `is_deleted`                             TINYINT(1) NOT NULL     DEFAULT '0',
