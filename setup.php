@@ -27,7 +27,7 @@
  --------------------------------------------------------------------------
  */
 
-define('PLUGIN_DATABASES_VERSION', '2.2.1');
+define('PLUGIN_DATABASES_VERSION', '2.2.2');
 
 // Init the hooks of the plugins -Needed
 function plugin_init_databases() {
