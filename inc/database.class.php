@@ -194,7 +194,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
          'id'        => '11',
          'table'     => 'glpi_users',
          'field'     => 'name',
-         'linkfield' => 'users_id_tech',
+         'linkfield' => 'users_id',
          'name'      => __('Technician in charge of the hardware'),
          'datatype'  => 'dropdown',
          'right'     => 'interface'
@@ -204,7 +204,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
          'id'        => '12',
          'table'     => 'glpi_groups',
          'field'     => 'name',
-         'linkfield' => 'groups_id_tech',
+         'linkfield' => 'groups_id',
          'name'      => __('Group in charge of the hardware'),
          'condition' => '`is_assign`',
          'datatype'  => 'dropdown'
@@ -345,8 +345,8 @@ class PluginDatabasesDatabase extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
 
       echo "<td>" . __('Technician in charge of the hardware') . "</td><td>";
-      User::dropdown(['name'   => "users_id_tech",
-                      'value'  => $this->fields["users_id_tech"],
+      User::dropdown(['name'   => "users_id",
+                      'value'  => $this->fields["users_id"],
                       'entity' => $this->fields["entities_id"],
                       'right'  => 'interface']);
       echo "</td>";
@@ -363,8 +363,8 @@ class PluginDatabasesDatabase extends CommonDBTM {
       echo "<tr class='tab_bg_1'>";
 
       echo "<td>" . __('Group in charge of the hardware') . "</td><td>";
-      Group::dropdown(['name'      => 'groups_id_tech',
-                       'value'     => $this->fields['groups_id_tech'],
+      Group::dropdown(['name'      => 'groups_id',
+                       'value'     => $this->fields['groups_id'],
                        'entity'    => $this->fields['entities_id'],
                        'condition' => ['is_assign' => 1]]);
       echo "</td>";
@@ -389,6 +389,19 @@ class PluginDatabasesDatabase extends CommonDBTM {
 
       echo "<td>" . __('Associable to a ticket') . "</td><td>";
       Dropdown::showYesNo('is_helpdesk_visible', $this->fields['is_helpdesk_visible']);
+      echo "</td>";
+
+      echo "</tr>";
+      echo "<tr class='tab_bg_1'>";
+
+      echo "<td>" . __('Link') . "</td>";
+      echo "<td>";
+      Html::autocompletionTextField($this, "link");
+      echo "&nbsp;<a target='_blank' href='".$this->getField("link")."'><i class=\"fas fa-link\"></i></a>";
+      echo "</td>";
+
+      echo "<td></td><td>";
+
       echo "</td>";
 
       echo "</tr>";

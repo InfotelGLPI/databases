@@ -38,7 +38,7 @@ function plugin_databases_install() {
    $update = false;
    if (!$DB->tableExists("glpi_plugin_sgbd") && !$DB->tableExists("glpi_plugin_databases_databases")) {
 
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/empty-2.1.0.sql");
+      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/empty-2.2.2.sql");
 
    } else if ($DB->tableExists("glpi_plugin_sgbd") && !$DB->tableExists("glpi_plugin_sgbd_instances")) {
 
@@ -71,6 +71,10 @@ function plugin_databases_install() {
    if ($DB->tableExists("glpi_plugin_databases_databases")
        && !$DB->fieldExists("glpi_plugin_databases_databases", "users_id_tech")) {
       $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.5.0.sql");
+   }
+   if ($DB->tableExists("glpi_plugin_databases_databases")
+      && !$DB->fieldExists("glpi_plugin_databases_databases", "users_id")) {
+      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-2.2.2.sql");
    }
 
    if ($DB->tableExists("glpi_plugin_databases_profiles")) {
@@ -381,9 +385,9 @@ function plugin_databases_getDatabaseRelations() {
               "glpi_plugin_databases_databasetypes"      => [
                  "glpi_plugin_databases_databases" => "plugin_databases_databasetypes_id"],
               "glpi_users"                               => [
-                 "glpi_plugin_databases_databases" => "users_id_tech"],
+                 "glpi_plugin_databases_databases" => "users_id"],
               "glpi_groups"                              => [
-                 "glpi_plugin_databases_databases" => "groups_id_tech"],
+                 "glpi_plugin_databases_databases" => "groups_id"],
               "glpi_plugin_databases_servertypes"        => [
                  "glpi_plugin_databases_databases" => "plugin_databases_servertypes_id"],
               "glpi_suppliers"                           => [
