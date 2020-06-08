@@ -181,7 +181,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
          if ($DB->numrows($result) != 1) {
             return false;
          }
-         $this->fields = $DB->fetch_assoc($result);
+         $this->fields = $DB->fetchAssoc($result);
          if (is_array($this->fields) && count($this->fields)) {
             return true;
          } else {
@@ -344,7 +344,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
 
                   Session::initNavigateListItems($itemType, PluginDatabasesDatabase::getTypeName(2) . " = " . $database->fields['name']);
 
-                  while ($data = $DB->fetch_assoc($result_linked)) {
+                  while ($data = $DB->fetchAssoc($result_linked)) {
 
                      $item->getFromDB($data["id"]);
 
@@ -453,7 +453,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
       $database  = new PluginDatabasesDatabase();
       $used      = [];
       if ($numrows = $DB->numrows($result)) {
-         while ($data = $DB->fetch_assoc($result)) {
+         while ($data = $DB->fetchAssoc($result)) {
             $databases[$data['assocID']] = $data;
             $used[$data['id']]           = $data['id'];
          }

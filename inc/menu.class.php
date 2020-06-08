@@ -53,8 +53,13 @@ class PluginDatabasesMenu extends CommonGLPI {
       if (PluginDatabasesDatabase::canCreate()) {
          $menu['links']['add'] = PluginDatabasesDatabase::getFormURL(false);
       }
+      $menu['icon'] = self::getIcon();
 
       return $menu;
+   }
+
+   static function getIcon() {
+      return "fas fa-database";
    }
 
    static function removeRightsFromSession() {

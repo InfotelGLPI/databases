@@ -107,7 +107,7 @@ function plugin_databases_install() {
       $result_ = $DB->query($query_);
       if ($DB->numrows($result_) > 0) {
 
-         while ($data = $DB->fetch_array($result_)) {
+         while ($data = $DB->fetchArray($result_)) {
             $query = "UPDATE `glpi_plugin_databases_profiles`
                   SET `profiles_id` = '" . $data["id"] . "'
                   WHERE `id` = '" . $data["id"] . "';";
@@ -124,7 +124,7 @@ function plugin_databases_install() {
       $result = $DB->query($query);
       $number = $DB->numrows($result);
       if ($number) {
-         while ($data = $DB->fetch_array($result)) {
+         while ($data = $DB->fetchArray($result)) {
             $query = "UPDATE `glpi_plugin_databases_instances`
                   SET `entities_id` = '" . $data["entities_id"] . "'
                   AND `is_recursive` = '" . $data["is_recursive"] . "'
@@ -202,11 +202,17 @@ function plugin_databases_uninstall() {
                    "glpi_logs",
                    "glpi_items_tickets",
                    "glpi_notepads",
-                   "glpi_dropdowntranslations"];
+                   "glpi_dropdowntranslations",
+                   "glpi_impactitems"];
 
    foreach ($tables_glpi as $table_glpi) {
       $DB->query("DELETE FROM `$table_glpi` WHERE `itemtype` LIKE 'PluginDatabases%' ;");
    }
+
+   $DB->query("DELETE
+                  FROM `glpi_impactrelations`
+                  WHERE `itemtype_source` IN ('PluginDatabasesDatabase')
+                    OR `itemtype_impacted` IN ('PluginDatabasesDatabase')");
 
    if (class_exists('PluginDatainjectionModel')) {
       PluginDatainjectionModel::clean(['itemtype' => 'PluginDatabasesDatabase']);
@@ -291,7 +297,7 @@ function plugin_databases_AssignToTicketDropdown($data) {
 
       $result = $DB->query($sql);
       $elements = array();
-      while ($res = $DB->fetch_array($result)) {
+      while ($res = $DB->fetchArray($result)) {
          $itemtype = $res['itemtype'];
          $item = new $itemtype;
          $item->getFromDB($res['items_id']);
@@ -551,7 +557,7 @@ function plugin_databases_giveItem($type, $ID, $data, $num) {
                   if ($result_linked = $DB->query($query)) {
                      if ($DB->numrows($result_linked)) {
                         $item = new $itemtype();
-                        while ($data = $DB->fetch_assoc($result_linked)) {
+                        while ($data = $DB->fetchAssoc($result_linked)) {
                            if ($item->getFromDB($data['id'])) {
                               $out .= $item::getTypeName(1) . " - " . $item->getLink() . "<br>";
                            }

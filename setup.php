@@ -27,11 +27,11 @@
  --------------------------------------------------------------------------
  */
 
-define('PLUGIN_DATABASES_VERSION', '2.2.2');
+define('PLUGIN_DATABASES_VERSION', '2.3.0');
 
 // Init the hooks of the plugins -Needed
 function plugin_init_databases() {
-   global $PLUGIN_HOOKS;
+   global $PLUGIN_HOOKS, $CFG_GLPI;
 
    $PLUGIN_HOOKS['csrf_compliant']['databases']   = true;
    $PLUGIN_HOOKS['change_profile']['databases']   = ['PluginDatabasesProfile', 'initProfile'];
@@ -41,6 +41,7 @@ function plugin_init_databases() {
    //$PLUGIN_HOOKS['assign_to_ticket_itemtype']['databases'] = array('PluginDatabasesDatabase_Item');
 
    Plugin::registerClass('PluginDatabasesDatabase', [
+      'asset_types'            => true,
       'linkgroup_types'        => true,
       'linkgroup_tech_types'   => true,
       'linkuser_tech_types'    => true,
@@ -49,6 +50,9 @@ function plugin_init_databases() {
       'helpdesk_visible_types' => true,
       'addtabon'               => 'Supplier'
    ]);
+
+   $CFG_GLPI['impact_asset_types']['PluginDatabasesDatabase'] = "plugins/databases/databases.png";
+
    Plugin::registerClass('PluginDatabasesProfile',
                          ['addtabon' => 'Profile']);
 
@@ -92,15 +96,15 @@ function plugin_init_databases() {
 function plugin_version_databases() {
 
    return [
-      'name'           => _n('Database', 'Databases', 2, 'databases'),
-      'version'        => PLUGIN_DATABASES_VERSION,
-      'author'         => "<a href='http://blogglpi.infotel.com'>Infotel</a>",
-      'oldname'        => 'sgbd',
-      'license'        => 'GPLv2+',
-      'homepage'       => 'https://github.com/InfotelGLPI/databases',
-      'requirements'   => [
+      'name'         => _n('Database', 'Databases', 2, 'databases'),
+      'version'      => PLUGIN_DATABASES_VERSION,
+      'author'       => "<a href='http://blogglpi.infotel.com'>Infotel</a>",
+      'oldname'      => 'sgbd',
+      'license'      => 'GPLv2+',
+      'homepage'     => 'https://github.com/InfotelGLPI/databases',
+      'requirements' => [
          'glpi' => [
-            'min' => '9.4',
+            'min' => '9.5',
             'dev' => false
          ]
       ]
@@ -112,10 +116,10 @@ function plugin_version_databases() {
  * @return bool
  */
 function plugin_databases_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '9.4', 'lt') 
-         || version_compare(GLPI_VERSION, '9.5', 'ge')) {
+   if (version_compare(GLPI_VERSION, '9.5', 'lt')
+       || version_compare(GLPI_VERSION, '9.6', 'ge')) {
       if (method_exists('Plugin', 'messageIncompatible')) {
-         echo Plugin::messageIncompatible('core', '9.4');
+         echo Plugin::messageIncompatible('core', '9.5');
       }
       return false;
    }

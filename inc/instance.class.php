@@ -272,7 +272,7 @@ class PluginDatabasesInstance extends CommonDBChild {
          $i       = 0;
          $row_num = 1;
 
-         while ($data = $DB->fetch_array($result)) {
+         while ($data = $DB->fetchArray($result)) {
 
             Session::addToNavigateListItems($this->getType(), $data['id']);
 

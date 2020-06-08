@@ -40,7 +40,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
    static    $rightname  = "plugin_databases";
    protected $usenotepad = true;
 
-   static $types = ['Computer', 'Software', 'SoftwareLicense'];
+   static $types = ['Computer', 'Software', 'SoftwareLicense', 'Appliance'];
 
    /**
     * @param int $nb
@@ -228,6 +228,14 @@ class PluginDatabasesDatabase extends CommonDBTM {
       ];
 
       $tab[] = [
+         'id'                 => '15',
+         'table'              => $this->getTable(),
+         'field'              => 'link',
+         'name'               => __('URL'),
+         'datatype'           => 'weblink'
+      ];
+
+      $tab[] = [
          'id'       => '30',
          'table'    => $this->getTable(),
          'field'    => 'id',
@@ -272,6 +280,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
 
       $ong = [];
       $this->addDefaultFormTab($ong);
+      $this->addImpactTab($ong, $options);
       $this->addStandardTab('PluginDatabasesDatabase_Item', $ong, $options);
       $this->addStandardTab('PluginDatabasesInstance', $ong, $options);
       $this->addStandardTab('PluginDatabasesScript', $ong, $options);
@@ -394,10 +403,10 @@ class PluginDatabasesDatabase extends CommonDBTM {
       echo "</tr>";
       echo "<tr class='tab_bg_1'>";
 
-      echo "<td>" . __('Link') . "</td>";
+      echo "<td>" . __('URL') . "</td>";
       echo "<td>";
       Html::autocompletionTextField($this, "link");
-      echo "&nbsp;<a target='_blank' href='".$this->getField("link")."'><i class=\"fas fa-link\"></i></a>";
+      echo "&nbsp;<a target='_blank' href='" . $this->getField("link") . "'><i class=\"fas fa-link\"></i></a>";
       echo "</td>";
 
       echo "<td></td><td>";
@@ -458,7 +467,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
             $p[$key] = $val;
          }
       }
-      $dbu = new DbUtils();
+      $dbu   = new DbUtils();
       $where = " WHERE `glpi_plugin_databases_databases`.`is_deleted` = '0' " .
                $dbu->getEntitiesRestrictRequest("AND", "glpi_plugin_databases_databases", '', $p['entity'], true);
 
@@ -477,7 +486,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
 
       $values = [0 => Dropdown::EMPTY_VALUE];
 
-      while ($data = $DB->fetch_assoc($result)) {
+      while ($data = $DB->fetchAssoc($result)) {
          $values[$data['id']] = $data['name'];
       }
       $rand     = mt_rand();
@@ -512,10 +521,10 @@ class PluginDatabasesDatabase extends CommonDBTM {
    /**
     * For other plugins, add a type to the linkable types
     *
-    * @since version 1.3.0
-    *
     * @param $type string class name
-    **/
+    **@since version 1.3.0
+    *
+    */
    static function registerType($type) {
       if (!in_array($type, self::$types)) {
          self::$types[] = $type;
@@ -595,7 +604,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
 
       echo "</tr>";
 
-      while ($data = $DB->fetch_array($result)) {
+      while ($data = $DB->fetchArray($result)) {
 
          echo "<tr class='tab_bg_1" . ($data["is_deleted"] == '1' ? "_2" : "") . "'>";
          if ($withtemplate != 3 && $canread && (in_array($data['entities_id'], $_SESSION['glpiactiveentities']) || $data["is_recursive"])) {
@@ -624,13 +633,13 @@ class PluginDatabasesDatabase extends CommonDBTM {
    }
 
    /**
+    * @param null $checkitem
+    *
+    * @return array
     * @since version 0.85
     *
     * @see CommonDBTM::getSpecificMassiveActions()
     *
-    * @param null $checkitem
-    *
-    * @return array
     */
    function getSpecificMassiveActions($checkitem = null) {
       $isadmin = static::canUpdate();
@@ -652,13 +661,13 @@ class PluginDatabasesDatabase extends CommonDBTM {
    }
 
    /**
+    * @param MassiveAction $ma
+    *
+    * @return bool|false
     * @since version 0.85
     *
     * @see CommonDBTM::showMassiveActionsSubForm()
     *
-    * @param MassiveAction $ma
-    *
-    * @return bool|false
     */
    static function showMassiveActionsSubForm(MassiveAction $ma) {
 
@@ -700,15 +709,15 @@ class PluginDatabasesDatabase extends CommonDBTM {
 
 
    /**
-    * @since version 0.85
-    *
-    * @see CommonDBTM::processMassiveActionsForOneItemtype()
-    *
     * @param MassiveAction $ma
     * @param CommonDBTM    $item
     * @param array         $ids
     *
     * @return nothing|void
+    * @since version 0.85
+    *
+    * @see CommonDBTM::processMassiveActionsForOneItemtype()
+    *
     */
    static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item,
                                                        array $ids) {
