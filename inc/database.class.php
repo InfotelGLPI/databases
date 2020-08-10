@@ -502,14 +502,14 @@ class PluginDatabasesDatabase extends CommonDBTM {
                  'used'         => $p['used']];
 
       $out .= Ajax::updateItemOnSelectEvent($field_id, "show_" . $p['name'] . $rand,
-                                            PLUGIN_DATABASES_DIR . "/ajax/dropdownTypeDatabases.php",
+                                            $CFG_GLPI["root_doc"].PLUGIN_DATABASES_DIR_NOFULL . "/ajax/dropdownTypeDatabases.php",
                                             $params, false);
       $out .= "<span id='show_" . $p['name'] . "$rand'>";
       $out .= "</span>\n";
 
       $params['databasetype'] = 0;
       $out                    .= Ajax::updateItem("show_" . $p['name'] . $rand,
-                                                  PLUGIN_DATABASES_DIR . "/ajax/dropdownTypeDatabases.php",
+                                                  $CFG_GLPI["root_doc"].PLUGIN_DATABASES_DIR_NOFULL . "/ajax/dropdownTypeDatabases.php",
                                                   $params, false);
       if ($p['display']) {
          echo $out;
@@ -589,7 +589,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
       }
 
       if ($withtemplate != 2) {
-         echo "<form method='post' action=\"" . PLUGIN_DATABASES_DIR . "/front/database.form.php\">";
+         echo "<form method='post' action=\"" . $CFG_GLPI["root_doc"].PLUGIN_DATABASES_DIR_NOFULL . "/front/database.form.php\">";
       }
 
       echo "<div align='center'><table class='tab_cadre_fixe'>";
@@ -608,7 +608,7 @@ class PluginDatabasesDatabase extends CommonDBTM {
 
          echo "<tr class='tab_bg_1" . ($data["is_deleted"] == '1' ? "_2" : "") . "'>";
          if ($withtemplate != 3 && $canread && (in_array($data['entities_id'], $_SESSION['glpiactiveentities']) || $data["is_recursive"])) {
-            echo "<td class='center'><a href='" . PLUGIN_DATABASES_DIR . "/front/database.form.php?id=" . $data["id"] . "'>" . $data["name"];
+            echo "<td class='center'><a href='" . $CFG_GLPI["root_doc"].PLUGIN_DATABASES_DIR_NOFULL . "/front/database.form.php?id=" . $data["id"] . "'>" . $data["name"];
             if ($_SESSION["glpiis_ids_visible"]) {
                echo " (" . $data["id"] . ")";
             }

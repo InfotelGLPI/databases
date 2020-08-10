@@ -96,7 +96,7 @@ class PluginDatabasesInstance extends CommonDBChild {
 
          $self->showInstances($item);
          $self->showForm("", ['plugin_databases_databases_id' => $item->getField('id'),
-                              'target'                        => PLUGIN_DATABASES_DIR . "/front/instance.form.php"]);
+                              'target'                        => $CFG_GLPI["root_doc"].PLUGIN_DATABASES_DIR_NOFULL . "/front/instance.form.php"]);
       }
       return true;
    }
@@ -286,7 +286,7 @@ class PluginDatabasesInstance extends CommonDBChild {
             echo "</td>";
 
             echo "<td class='center'>";
-            echo "<a href='" . PLUGIN_DATABASES_DIR . "/front/instance.form.php?id=" . $data["id"] . "&amp;plugin_databases_databases_id=" . $data["plugin_databases_databases_id"] . "'>" . $data["name"];
+            echo "<a href='" . $CFG_GLPI["root_doc"].PLUGIN_DATABASES_DIR_NOFULL . "/front/instance.form.php?id=" . $data["id"] . "&amp;plugin_databases_databases_id=" . $data["plugin_databases_databases_id"] . "'>" . $data["name"];
             if ($_SESSION["glpiis_ids_visible"] || empty($data["name"])) {
                echo " (" . $data["id"] . ")";
             }
