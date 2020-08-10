@@ -69,7 +69,8 @@ function plugin_databases_install() {
    }
    //from 1.3 version
    if ($DB->tableExists("glpi_plugin_databases_databases")
-       && !$DB->fieldExists("glpi_plugin_databases_databases", "users_id_tech")) {
+       && !$DB->fieldExists("glpi_plugin_databases_databases", "users_id_tech")
+       && !$DB->fieldExists("glpi_plugin_databases_databases", "users_id")) {
       $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.5.0.sql");
    }
    if ($DB->tableExists("glpi_plugin_databases_databases")
