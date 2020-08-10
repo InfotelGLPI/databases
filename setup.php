@@ -29,6 +29,10 @@
 
 define('PLUGIN_DATABASES_VERSION', '2.3.0');
 
+if (!defined("PLUGIN_DATABASES_DIR")) {
+   define("PLUGIN_DATABASES_DIR", Plugin::getPhpDir("databases"));
+   define("PLUGIN_DATABASES_DIR_NOFULL", Plugin::getPhpDir("databases",false));
+}
 // Init the hooks of the plugins -Needed
 function plugin_init_databases() {
    global $PLUGIN_HOOKS, $CFG_GLPI;

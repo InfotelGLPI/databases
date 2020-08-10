@@ -48,7 +48,7 @@ class PluginDatabasesMenu extends CommonGLPI {
 
       $menu                    = [];
       $menu['title']           = self::getMenuName();
-      $menu['page']            = "/plugins/databases/front/database.php";
+      $menu['page']            = PLUGIN_DATABASES_DIR_NOFULL."/front/database.php";
       $menu['links']['search'] = PluginDatabasesDatabase::getSearchURL(false);
       if (PluginDatabasesDatabase::canCreate()) {
          $menu['links']['add'] = PluginDatabasesDatabase::getFormURL(false);

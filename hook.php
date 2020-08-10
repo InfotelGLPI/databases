@@ -33,48 +33,48 @@
 function plugin_databases_install() {
    global $DB;
 
-   include_once(GLPI_ROOT . "/plugins/databases/inc/profile.class.php");
+   include_once(PLUGIN_DATABASES_DIR . "/inc/profile.class.php");
 
    $update = false;
    if (!$DB->tableExists("glpi_plugin_sgbd") && !$DB->tableExists("glpi_plugin_databases_databases")) {
 
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/empty-2.2.2.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/empty-2.2.2.sql");
 
    } else if ($DB->tableExists("glpi_plugin_sgbd") && !$DB->tableExists("glpi_plugin_sgbd_instances")) {
 
       $update = true;
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.1.sql");
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.2.0.sql");
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.2.1.sql");
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.3.0.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.1.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.2.0.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.2.1.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.3.0.sql");
 
    } else if ($DB->tableExists("glpi_plugin_sgbd") && !$DB->tableExists("glpi_dropdown_plugin_sgbd_category")) {
 
       $update = true;
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.2.0.sql");
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.2.1.sql");
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.3.0.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.2.0.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.2.1.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.3.0.sql");
 
    } else if ($DB->tableExists("glpi_plugin_sgbd") && !$DB->fieldExists("glpi_plugin_sgbd", "helpdesk_visible")) {
 
       $update = true;
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.2.1.sql");
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.3.0.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.2.1.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.3.0.sql");
 
    } else if (!$DB->tableExists("glpi_plugin_databases_databases")) {
 
       $update = true;
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.3.0.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.3.0.sql");
 
    }
    //from 1.3 version
    if ($DB->tableExists("glpi_plugin_databases_databases")
        && !$DB->fieldExists("glpi_plugin_databases_databases", "users_id_tech")) {
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-1.5.0.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-1.5.0.sql");
    }
    if ($DB->tableExists("glpi_plugin_databases_databases")
       && !$DB->fieldExists("glpi_plugin_databases_databases", "users_id")) {
-      $DB->runFile(GLPI_ROOT . "/plugins/databases/sql/update-2.2.2.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/update-2.2.2.sql");
    }
 
    if ($DB->tableExists("glpi_plugin_databases_profiles")) {
@@ -164,8 +164,8 @@ function plugin_databases_install() {
 function plugin_databases_uninstall() {
    global $DB;
 
-   include_once(GLPI_ROOT . "/plugins/databases/inc/profile.class.php");
-   include_once(GLPI_ROOT . "/plugins/databases/inc/menu.class.php");
+   include_once(PLUGIN_DATABASES_DIR . "/inc/profile.class.php");
+   include_once(PLUGIN_DATABASES_DIR . "/inc/menu.class.php");
 
    $tables = ["glpi_plugin_databases_databases",
               "glpi_plugin_databases_databasetypes",
