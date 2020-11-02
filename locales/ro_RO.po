@@ -9,10 +9,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: GLPI - Databases plugin 1.9.0\n"
+"Project-Id-Version: GLPI - Databases plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-24 13:08+0100\n"
-"PO-Revision-Date: 2020-11-02 12:53+0000\n"
+"POT-Creation-Date: 2020-11-02 17:39+0100\n"
+"PO-Revision-Date: 2020-11-02 16:00+0000\n"
 "Last-Translator: Xavier CAILLAUD <thetsmr@gmail.com>, 2020\n"
 "Language-Team: Romanian (Romania) (https://www.transifex.com/infotelGLPI/teams/12357/ro_RO/)\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr ""
 "Language: ro_RO\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
-#: hook.php:600
+#: hook.php:610
 msgid "Associate to the database"
 msgstr "Asociază la baza de date"
 
-#: setup.php:94 inc/database.class.php:52 inc/menu.class.php:41
+#: setup.php:99 inc/database.class.php:52 inc/menu.class.php:41
 #: inc/profile.class.php:175
 msgid "Database"
 msgid_plural "Databases"
@@ -33,19 +33,12 @@ msgstr[0] "Bază de date"
 msgstr[1] "Baze de date"
 msgstr[2] "Baze de date"
 
-#: inc/databasecategory.class.php:49
-msgid "Category"
-msgid_plural "Categories"
-msgstr[0] "Categorie"
-msgstr[1] "Categorii"
-msgstr[2] "Categorii"
-
-#: inc/database.class.php:160 inc/database.class.php:372
+#: inc/database.class.php:160 inc/database.class.php:381
 #: inc/database_item.class.php:540
 msgid "Editor"
 msgstr "Editor"
 
-#: inc/database.class.php:574
+#: inc/database.class.php:596
 msgid "Database associated"
 msgid_plural "Databases associated"
 msgstr[0] "Bază de date asociată"
@@ -56,6 +49,13 @@ msgstr[2] "Baze de date asociate"
 msgctxt "button"
 msgid "Associate a database"
 msgstr "Asociază la baza de date"
+
+#: inc/databasecategory.class.php:49
+msgid "Category"
+msgid_plural "Categories"
+msgstr[0] "Categorie"
+msgstr[1] "Categorii"
+msgstr[2] "Categorii"
 
 #: inc/instance.class.php:52
 msgid "Instance"
