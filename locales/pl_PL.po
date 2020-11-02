@@ -9,9 +9,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: GLPI - Databases plugin 1.9.0\n"
+"Project-Id-Version: GLPI - Databases plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-24 13:08+0100\n"
+"POT-Creation-Date: 2020-11-02 17:39+0100\n"
 "PO-Revision-Date: 2020-11-02 16:00+0000\n"
 "Last-Translator: Xavier CAILLAUD <thetsmr@gmail.com>, 2020\n"
 "Language-Team: Polish (Poland) (https://www.transifex.com/infotelGLPI/teams/12357/pl_PL/)\n"
@@ -21,11 +21,11 @@ msgstr ""
 "Language: pl_PL\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: hook.php:600
+#: hook.php:610
 msgid "Associate to the database"
 msgstr "Połączenie z bazą danych"
 
-#: setup.php:94 inc/database.class.php:52 inc/menu.class.php:41
+#: setup.php:99 inc/database.class.php:52 inc/menu.class.php:41
 #: inc/profile.class.php:175
 msgid "Database"
 msgid_plural "Databases"
@@ -34,20 +34,12 @@ msgstr[1] "Bazy danych"
 msgstr[2] "Baz danych"
 msgstr[3] "Baz danych"
 
-#: inc/databasecategory.class.php:49
-msgid "Category"
-msgid_plural "Categories"
-msgstr[0] "Kategoria"
-msgstr[1] "Kategorie"
-msgstr[2] "Kategorii"
-msgstr[3] "Kategorii"
-
-#: inc/database.class.php:160 inc/database.class.php:372
+#: inc/database.class.php:160 inc/database.class.php:381
 #: inc/database_item.class.php:540
 msgid "Editor"
 msgstr "Producent"
 
-#: inc/database.class.php:574
+#: inc/database.class.php:596
 msgid "Database associated"
 msgid_plural "Databases associated"
 msgstr[0] "Połączona baza danych"
@@ -59,6 +51,14 @@ msgstr[3] "Połączonych baz danych"
 msgctxt "button"
 msgid "Associate a database"
 msgstr "Dołącz bazę danych"
+
+#: inc/databasecategory.class.php:49
+msgid "Category"
+msgid_plural "Categories"
+msgstr[0] "Kategoria"
+msgstr[1] "Kategorie"
+msgstr[2] "Kategorii"
+msgstr[3] "Kategorii"
 
 #: inc/instance.class.php:52
 msgid "Instance"
