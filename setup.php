@@ -27,7 +27,7 @@
  --------------------------------------------------------------------------
  */
 
-define('PLUGIN_DATABASES_VERSION', '2.3.0');
+define('PLUGIN_DATABASES_VERSION', '2.3.1');
 
 if (!defined("PLUGIN_DATABASES_DIR")) {
    define("PLUGIN_DATABASES_DIR", Plugin::getPhpDir("databases"));
@@ -45,7 +45,6 @@ function plugin_init_databases() {
    //$PLUGIN_HOOKS['assign_to_ticket_itemtype']['databases'] = array('PluginDatabasesDatabase_Item');
 
    Plugin::registerClass('PluginDatabasesDatabase', [
-      'asset_types'            => true,
       'linkgroup_types'        => true,
       'linkgroup_tech_types'   => true,
       'linkuser_tech_types'    => true,
