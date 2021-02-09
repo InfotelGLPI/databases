@@ -38,7 +38,7 @@ function plugin_databases_install() {
    $update = false;
    if (!$DB->tableExists("glpi_plugin_sgbd") && !$DB->tableExists("glpi_plugin_databases_databases")) {
 
-      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/empty-2.3.1.sql");
+      $DB->runFile(PLUGIN_DATABASES_DIR . "/sql/empty-2.3.2.sql");
 
    } else if ($DB->tableExists("glpi_plugin_sgbd") && !$DB->tableExists("glpi_plugin_sgbd_instances")) {
 

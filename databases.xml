@@ -26,6 +26,11 @@
     </authors>
     <versions>
         <version>
+            <num>2.3.2</num>
+            <compatibility>~9.5</compatibility>
+            <download_url>https://github.com/InfotelGLPI/databases/releases/download/2.3.2/glpi-databases-2.3.2.tar.gz</download_url>
+        </version>
+        <version>
             <num>2.3.1</num>
             <compatibility>~9.5</compatibility>
             <download_url>https://github.com/InfotelGLPI/databases/releases/download/2.3.1/glpi-databases-2.3.1.tar.gz</download_url>
