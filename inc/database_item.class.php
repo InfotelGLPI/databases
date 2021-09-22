@@ -536,6 +536,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
       }
       echo "<th>" . PluginDatabasesServerType::getTypeName(1) . "</th>";
       echo "<th>" . PluginDatabasesDatabaseCategory::getTypeName(1) . "</th>";
+      echo "<th>" . PluginDatabasesDatabaseType::getTypeName(1) . "</th>";
       echo "<th>" . __('Supplier') . "</th>";
       echo "<th>" . __('Editor', 'databases') . "</th>";
       echo "</tr>";
@@ -573,6 +574,7 @@ class PluginDatabasesDatabase_Item extends CommonDBRelation {
                     "</td>";
             }
             echo "<td>" . Dropdown::getDropdownName("glpi_plugin_databases_servertypes", $data["plugin_databases_servertypes_id"]) . "</td>";
+            echo "<td>" . Dropdown::getDropdownName("glpi_plugin_databases_databasecategories", $data["plugin_databases_databasecategories_id"]) . "</td>";
             echo "<td>" . Dropdown::getDropdownName("glpi_plugin_databases_databasetypes", $data["plugin_databases_databasetypes_id"]) . "</td>";
             echo "<td>" . Dropdown::getDropdownName("glpi_manufacturers", $data["manufacturers_id"]) . "</td>";
             echo "<td>";
