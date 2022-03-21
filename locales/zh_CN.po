@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Databases Development Team
+# This file is distributed under the same license as the GLPI - Databases plugin package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# 孔南, 2022
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: GLPI - Databases plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-22 09:50+0000\n"
+"PO-Revision-Date: 2020-11-02 16:00+0000\n"
+"Last-Translator: 孔南, 2022\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/infotelGLPI/teams/12357/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: hook.php:611
+msgid "Associate to the database"
+msgstr "关联到数据库"
+
+#: setup.php:102 inc/database.class.php:52 inc/menu.class.php:41
+#: inc/profile.class.php:175
+msgid "Database"
+msgid_plural "Databases"
+msgstr[0] "数据库"
+
+#: inc/database.class.php:160 inc/database.class.php:381
+#: inc/database_item.class.php:541
+msgid "Editor"
+msgstr "编辑器"
+
+#: inc/database.class.php:596
+msgid "Database associated"
+msgid_plural "Databases associated"
+msgstr[0] "已关联数据库"
+
+#: inc/database_item.class.php:511
+msgctxt "button"
+msgid "Associate a database"
+msgstr "关联一个数据库"
+
+#: inc/databasecategory.class.php:49
+msgid "Category"
+msgid_plural "Categories"
+msgstr[0] "类别"
+
+#: inc/instance.class.php:52
+msgid "Instance"
+msgid_plural "Instances"
+msgstr[0] "实例"
+
+#: inc/instance.class.php:177 inc/instance.class.php:266
+#: inc/script.class.php:172 inc/script.class.php:263
+msgid "Path"
+msgstr "路径"
+
+#: inc/script.class.php:52
+msgid "Script"
+msgid_plural "Scripts"
+msgstr[0] "脚本"
+
+#: inc/scripttype.class.php:49
+msgid "Type of script"
+msgid_plural "Types of script"
+msgstr[0] "脚本类型"
+
+#: inc/servertype.class.php:48
+msgid "Engine"
+msgid_plural "Engines"
+msgstr[0] "引擎"
