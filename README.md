@@ -3,7 +3,7 @@ Plugin databases pour GLPI
 
 Attention
 Ce plugin est intégré dans GLPI 10. Un script de migration existe : 
-php bin/console glpi:migration:databases_plugin_to_core
+``php bin/console glpi:migration:databases_plugin_to_core``
 
 
 Ce plugin est sur Transifex - Aidez-nous à le traduire :
